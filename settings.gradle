@@ -1,2 +1,14 @@
 include ':app'
-rootProject.name='prevent Ripping'
+
+["feature"]
+        .asList()
+        .each { folderName ->
+            file(folderName)
+                    .eachDir { dir ->
+                        include dir.name
+                        project(":${dir.name}").projectDir = dir
+                    }
+
+        }
+
+rootProject.name = 'prevent Ripping'
