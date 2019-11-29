@@ -17,3 +17,7 @@ jobs:
         run: sudo chmod 777 -R ./
       - name: Android Gradlew Build
         run: sudo ./gradlew build
+ android_test:
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v1
