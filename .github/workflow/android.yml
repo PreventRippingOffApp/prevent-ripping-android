@@ -1,9 +1,9 @@
 name: CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
- android_build:
+  android_build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -17,7 +17,7 @@ jobs:
         run: sudo chmod 777 -R ./
       - name: Android Gradlew Build
         run: sudo ./gradlew build
- android_test:
+  android_test:
     runs-on: ubuntu-latest
     steps:
-       - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
