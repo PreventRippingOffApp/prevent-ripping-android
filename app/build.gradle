@@ -14,6 +14,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        def tokenProperty = new Properties()
+        tokenProperty.load(new FileInputStream("token.properties"))
+
+        manifestPlaceholders = [google_map_api_key: tokenProperty.get("google_map_api_key")];
+
     }
     buildTypes {
         release {
