@@ -11,14 +11,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        activity_main_navigate_to_map_button.setOnClickListener {
-//            supportFragmentManager
-//                .beginTransaction()
-//                .replace(
-//                    R.id.activity_main_container_fragment,
-//                    AlertMapFragment()
-//                )
-//                .commitNow()
-//        }
     }
 }

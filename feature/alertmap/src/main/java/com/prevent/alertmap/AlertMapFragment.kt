@@ -31,18 +31,6 @@ class AlertMapFragment : Fragment() {
             val sydney = LatLng(-34.0, 151.0)
             it.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         }
-
-
-//        map.getMapAsync {
-//
-//        }
-
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-//        val map = childFragmentManager.findFragmentById(R.id.fragment_alert_map_map)
     }
 }
