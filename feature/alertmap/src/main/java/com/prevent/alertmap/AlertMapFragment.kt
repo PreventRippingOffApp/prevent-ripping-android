@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.location.Criteria
 import android.location.LocationManager
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,11 +65,11 @@ class AlertMapFragment : Fragment() {
                     progress: Int,
                     fromUser: Boolean
                 ) {
-//                    Log.d("debug", (this@AlertMapFragment.view!!.height / 256 * progress).toString())
-
-
                     val animation = ValueAnimator
-                        .ofInt(seekBar!!.layoutParams.height, this@AlertMapFragment.view!!.height / 256 * progress)
+                        .ofInt(
+                            seekBar!!.layoutParams.height,
+                            this@AlertMapFragment.view!!.height / 256 * progress
+                        )
                     animation.addUpdateListener {
                         val animationValue = it.animatedValue as Int
                         val levelBarLayoutParams =
