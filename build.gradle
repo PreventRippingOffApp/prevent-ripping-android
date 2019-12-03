@@ -1,12 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    def tokenProperty = new Properties()
-    tokenProperty.load(new FileInputStream(("token.properties")))
-    tokenProperty.each { key, value ->
-        project.properties.put(key, value)
-    }
-
     ext.kotlin_version = '1.3.61'
     repositories {
         google()
