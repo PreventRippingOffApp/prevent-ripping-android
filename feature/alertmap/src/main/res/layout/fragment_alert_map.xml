@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -15,5 +16,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
+        <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/fragment_alert_map_danger_level_seekbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:max="256"
+                android:padding="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/fragment_alert_map_danger_level_bar"
+                android:layout_width="50dp"
+                android:layout_height="0dp"
+                android:backgroundTint="#C41C1C"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

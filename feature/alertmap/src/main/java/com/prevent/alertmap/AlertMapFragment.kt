@@ -1,12 +1,15 @@
 package com.prevent.alertmap
 
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.location.Criteria
 import android.location.LocationManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.SupportMapFragment
@@ -54,8 +57,43 @@ class AlertMapFragment : Fragment() {
                     )
                 }
             }
-            it.isMyLocationEnabled = true
         }
+
+        binding.fragmentAlertMapDangerLevelSeekbar
+            .setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(
+                    seekBar: SeekBar?,
+                    progress: Int,
+                    fromUser: Boolean
+                ) {
+//                    Log.d("debug", (this@AlertMapFragment.view!!.height / 256 * progress).toString())
+
+
+                    val animation = ValueAnimator
+                        .ofInt(seekBar!!.layoutParams.height, this@AlertMapFragment.view!!.height / 256 * progress)
+                    animation.addUpdateListener {
+                        val animationValue = it.animatedValue as Int
+                        val levelBarLayoutParams =
+                            binding.fragmentAlertMapDangerLevelBar!!.layoutParams
+                        levelBarLayoutParams.height = animationValue
+
+                        binding.fragmentAlertMapDangerLevelBar.layoutParams =
+                            levelBarLayoutParams
+                    }
+                    animation.start()
+                }
+
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+                }
+
+            })
+
         return binding.root
     }
 }
