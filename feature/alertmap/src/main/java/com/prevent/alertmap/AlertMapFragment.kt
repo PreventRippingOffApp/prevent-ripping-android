@@ -67,13 +67,13 @@ class AlertMapFragment : Fragment() {
                 ) {
                     val animation = ValueAnimator
                         .ofInt(
-                            seekBar!!.layoutParams.height,
+                            binding.fragmentAlertMapDangerLevelBar!!.layoutParams.height,
                             this@AlertMapFragment.view!!.height / 256 * progress
                         )
                     animation.addUpdateListener {
                         val animationValue = it.animatedValue as Int
                         val levelBarLayoutParams =
-                            binding.fragmentAlertMapDangerLevelBar!!.layoutParams
+                            binding.fragmentAlertMapDangerLevelBar.layoutParams
                         levelBarLayoutParams.height = animationValue
 
                         binding.fragmentAlertMapDangerLevelBar.layoutParams =
