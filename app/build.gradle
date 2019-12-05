@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 apply plugin: 'kotlin-android-extensions'
 
@@ -39,4 +40,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(path: ':alertmap')
+
+    // Permission Dispatcher
+    implementation "org.permissionsdispatcher:permissionsdispatcher:4.6.0"
+    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:4.6.0"
 }
