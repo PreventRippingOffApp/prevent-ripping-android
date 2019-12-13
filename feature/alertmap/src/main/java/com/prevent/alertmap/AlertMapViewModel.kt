@@ -9,7 +9,7 @@ import com.prevent.alertmap.usecase.FetchCurrentLocationUsecase
 internal class AlertMapViewModel(
     private val featchCurrentLocationUsecase: FetchCurrentLocationUsecase
 ) : ViewModel() {
-    private val currentLocationLiveData: LiveData<CurrentLocationEntity> = MutableLiveData(
+    val currentLocationLiveData: LiveData<CurrentLocationEntity> = MutableLiveData(
         featchCurrentLocationUsecase.execute()
     )
 }
