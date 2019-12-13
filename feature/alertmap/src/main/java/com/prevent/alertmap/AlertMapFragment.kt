@@ -8,15 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
 import com.prevent.alertmap.databinding.FragmentAlertMapBinding
+import com.prevent.alertmap.service.MapService
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class AlertMapFragment : Fragment() {
 
     private val viewModel: AlertMapViewModel by viewModel()
+    private val mapService: MapService by inject (parameters = {
+        parametersOf(requireActivity().supportFragmentManager
+        .findFragmentById(R.id.map))
+    })
 
     @SuppressLint("MissingPermission")
     override fun onCreateView(
@@ -31,24 +35,11 @@ class AlertMapFragment : Fragment() {
                 true
             )
 
-        val mapFragment = requireActivity().supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
 
         viewModel
             .currentLocationLiveData
             .observeForever {
-                val location = it.location
-                mapFragment.getMapAsync {
-                    it.animateCamera(
-                        CameraUpdateFactory.newLatLngZoom(
-                            LatLng(
-                                location.lat.value,
-                                location.lon.value
-                            ),
-                            15F
-                        )
-                    )
-                }
+                mapService.ZoomInTolocation(it)
             }
 
         binding.fragmentAlertMapDangerLevelSeekbar
