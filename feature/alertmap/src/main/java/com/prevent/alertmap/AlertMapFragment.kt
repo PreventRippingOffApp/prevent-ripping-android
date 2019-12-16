@@ -8,8 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.prevent.alertmap.databinding.FragmentAlertMapBinding
 import com.prevent.alertmap.service.MapService
+import com.prevent.feature.record.domain.RecordService
+import com.prevent.feature.record.domain.RecordStatus
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -17,9 +24,14 @@ import org.koin.core.parameter.parametersOf
 class AlertMapFragment : Fragment() {
 
     private val viewModel: AlertMapViewModel by viewModel()
-    private val mapService: MapService by inject (parameters = {
-        parametersOf(requireActivity().supportFragmentManager
-        .findFragmentById(R.id.map))
+
+    private val recordService: RecordService by inject()
+
+    private val mapService: MapService by inject(parameters = {
+        parametersOf(
+            requireActivity().supportFragmentManager
+                .findFragmentById(R.id.map)
+        )
     })
 
     @SuppressLint("MissingPermission")
@@ -76,6 +88,35 @@ class AlertMapFragment : Fragment() {
 
                     }
                 })
+
+
+
+        binding
+            .fragmentAlertMapRecordFloatingActionButton
+            .setOnClickListener {
+                this.lifecycleScope.launch {
+                    val recordStatus = recordService.recordStatus.first()
+                    when (recordStatus) {
+                        is RecordStatus.notRecording -> recordService.startRecord()
+                        is RecordStatus.recording -> recordService.stopRecord()
+                        else -> recordService.startRecord()
+                    }
+                }
+            }
+
+        this.lifecycleScope.launch {
+            recordService
+                .recordStatus
+                .collect {
+                    launch(Dispatchers.Main) {
+                        binding.fragmentAlertMapRecordFloatingActionButton.text =
+                            when (it) {
+                                is RecordStatus.recording -> "録音中"
+                                is RecordStatus.notRecording -> "録音停止する"
+                            }
+                    }
+                }
+        }
 
         return binding.root
     }

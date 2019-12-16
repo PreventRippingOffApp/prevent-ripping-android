@@ -6,32 +6,52 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatSeekBar
-                android:id="@+id/fragment_alert_map_danger_level_seekbar"
-                android:layout_width="0dp"
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                    android:id="@+id/fragment_alert_map_danger_level_seekbar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:max="256"
+                    android:padding="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/fragment_alert_map_danger_level_bar"
+                    android:layout_width="50dp"
+                    android:layout_height="0dp"
+                    android:backgroundTint="#C41C1C"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+                android:id="@+id/fragment_alert_map_bottom_app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_gravity="bottom"
+                android:backgroundTint="@color/design_default_color_primary" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/fragment_alert_map_record_floating_action_button"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:max="256"
-                android:padding="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:text="録音するボタン"
+                app:layout_anchor="@id/fragment_alert_map_bottom_app_bar" />
 
-        <androidx.cardview.widget.CardView
-                android:id="@+id/fragment_alert_map_danger_level_bar"
-                android:layout_width="50dp"
-                android:layout_height="0dp"
-                android:backgroundTint="#C41C1C"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

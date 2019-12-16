@@ -13,16 +13,8 @@ class RecordServiceImpl(
     private val coroutineScope: CoroutineScope = GlobalScope
 ) : RecordService {
 
-    val mediaRecorder: MediaRecorder
+    val mediaRecorder: MediaRecorder = MediaRecorder()
 
-    init {
-        mediaRecorder = MediaRecorder().apply {
-            this.setAudioSource(MediaRecorder.AudioSource.DEFAULT)
-            this.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT)
-            this.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT)
-            this.prepare()
-        }
-    }
 
     private val _recorderStatus: Channel<RecordStatus> = Channel()
 
@@ -31,6 +23,12 @@ class RecordServiceImpl(
         get() = _recorderStatus.consumeAsFlow()
 
     override fun startRecord() {
+        mediaRecorder.setOutputFile("/")
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC)
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT)
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT)
+        mediaRecorder.prepare()
+
         mediaRecorder.start()
         coroutineScope.launch {
             _recorderStatus.send(RecordStatus.recording())
@@ -39,5 +37,9 @@ class RecordServiceImpl(
 
     override fun stopRecord() {
         mediaRecorder.stop()
+
+        coroutineScope.launch {
+            _recorderStatus.send(RecordStatus.notRecording())
+        }
     }
 }
