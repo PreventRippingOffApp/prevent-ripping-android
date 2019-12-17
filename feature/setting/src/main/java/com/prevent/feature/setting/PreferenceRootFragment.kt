@@ -12,7 +12,9 @@ class PreferenceRootActivity : PreferenceFragmentCompat() {
 
         val preferenceCategory = PreferenceCategory(
             preferenceScreen.context
-        )
+        ).apply {
+            title = "カテゴリーネーム"
+        }
 
         preferenceScreen.addPreference(preferenceCategory)
 
