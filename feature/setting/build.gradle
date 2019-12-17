@@ -1,0 +1,7 @@
+apply plugin: 'com.android.library'
+
+apply from: '../../base_library.gradle'
+
+dependencies {
+    implementation "androidx.preference:preference-ktx:1.1.0"
+}

@@ -9,6 +9,7 @@ android {
 dependencies {
     implementation project(path: ':alertmap')
     implementation project(path: ':record')
+    implementation project(path: ':setting')
 }
 
 apply from: '../base_library.gradle'
