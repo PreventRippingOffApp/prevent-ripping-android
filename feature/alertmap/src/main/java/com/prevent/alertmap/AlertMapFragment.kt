@@ -14,8 +14,6 @@ import com.prevent.alertmap.service.MapService
 import com.prevent.feature.record.domain.RecordService
 import com.prevent.feature.record.domain.RecordStatus
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -24,6 +22,7 @@ import org.koin.core.parameter.parametersOf
 class AlertMapFragment : Fragment() {
 
     private val viewModel: AlertMapViewModel by viewModel()
+    private lateinit var binding: FragmentAlertMapBinding
 
     private val recordService: RecordService by inject()
 
@@ -40,7 +39,7 @@ class AlertMapFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentAlertMapBinding
+        binding = FragmentAlertMapBinding
             .inflate(
                 LayoutInflater.from(requireContext()),
                 container,
@@ -95,29 +94,30 @@ class AlertMapFragment : Fragment() {
             .fragmentAlertMapRecordFloatingActionButton
             .setOnClickListener {
                 this.lifecycleScope.launch {
-                    val recordStatus = recordService.recordStatus.first()
-                    when (recordStatus) {
-                        is RecordStatus.notRecording -> recordService.startRecord()
-                        is RecordStatus.recording -> recordService.stopRecord()
-                        else -> recordService.startRecord()
+                    val recordStatus = recordService.recordStatus
+                    try {
+                        when (recordStatus) {
+                            is RecordStatus.notRecording -> recordService.startRecord()
+                            is RecordStatus.recording -> recordService.stopRecord()
+                        }
+                    } finally {
+                        refreshRecordButtonText()
                     }
                 }
             }
 
-        this.lifecycleScope.launch {
-            recordService
-                .recordStatus
-                .collect {
-                    launch(Dispatchers.Main) {
-                        binding.fragmentAlertMapRecordFloatingActionButton.text =
-                            when (it) {
-                                is RecordStatus.recording -> "録音中"
-                                is RecordStatus.notRecording -> "録音停止する"
-                            }
-                    }
-                }
-        }
-
         return binding.root
+    }
+
+    private fun refreshRecordButtonText() {
+        this.lifecycleScope.launch(Dispatchers.Main) {
+            launch(Dispatchers.Main) {
+                binding.fragmentAlertMapRecordFloatingActionButton.text =
+                    when (recordService.recordStatus) {
+                        is RecordStatus.recording -> "録音中"
+                        is RecordStatus.notRecording -> "録音停止する"
+                    }
+            }
+        }
     }
 }
