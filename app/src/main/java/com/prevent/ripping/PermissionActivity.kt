@@ -30,24 +30,40 @@ class PermissionActivity : AppCompatActivity(R.layout.activity_permission) {
         onRequestPermissionsResult(requestCode, grantResults)
     }
 
-    @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+    @NeedsPermission(
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.RECORD_AUDIO,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
+    )
     fun moveNowLocation() {
         startActivity(
             Intent(this, MainActivity::class.java)
         )
     }
 
-    @OnShowRationale(Manifest.permission.ACCESS_FINE_LOCATION)
+    @OnShowRationale(
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.RECORD_AUDIO,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
+    )
     fun showLocationRationale(request: PermissionRequest) {
         request.proceed()
     }
 
-    @OnPermissionDenied(Manifest.permission.ACCESS_FINE_LOCATION)
+    @OnPermissionDenied(
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.RECORD_AUDIO,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
+    )
     fun onLocationPermissionDenied() {
 
     }
 
-    @OnNeverAskAgain(Manifest.permission.ACCESS_FINE_LOCATION)
+    @OnNeverAskAgain(
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.RECORD_AUDIO,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
+    )
     fun onLocationPermssionNeverAsAgain() {
 
     }

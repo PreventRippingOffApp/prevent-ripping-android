@@ -1,43 +1,62 @@
 package com.prevent.feature.record.domain
 
+import android.content.Context
+import android.media.AudioFormat
 import android.media.MediaRecorder
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.consumeAsFlow
-import kotlinx.coroutines.launch
+import omrecorder.AudioRecordConfig
+import omrecorder.OmRecorder
+import omrecorder.PullTransport
+import omrecorder.PullTransport.OnAudioChunkPulledListener
+import omrecorder.PullableSource
+import omrecorder.Recorder
+import java.io.File
+
 
 class RecordServiceImpl(
-    private val coroutineScope: CoroutineScope = GlobalScope
+    private val coroutineScope: CoroutineScope = GlobalScope,
+    private val context: Context
 ) : RecordService {
 
-    val mediaRecorder: MediaRecorder
+    private val outputFilePath = context.externalMediaDirs.first().absolutePath + "/output.wav"
+    private var omRecorder: Recorder = OmRecorder.wav(
+        PullTransport.Default(mic(),
+            OnAudioChunkPulledListener { audioChunk -> }),
+        File(outputFilePath)
+    )
 
-    init {
-        mediaRecorder = MediaRecorder().apply {
-            this.setAudioSource(MediaRecorder.AudioSource.DEFAULT)
-            this.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT)
-            this.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT)
-            this.prepare()
-        }
+    private fun mic(): PullableSource {
+        return PullableSource.Default(
+            AudioRecordConfig.Default(
+                MediaRecorder.AudioSource.MIC, AudioFormat.ENCODING_PCM_16BIT,
+                AudioFormat.CHANNEL_IN_MONO,
+                16000
+            )
+        )
     }
 
-    private val _recorderStatus: Channel<RecordStatus> = Channel()
-
-    @FlowPreview
-    override val recordStatus: Flow<RecordStatus>
-        get() = _recorderStatus.consumeAsFlow()
+    override var recordStatus: RecordStatus = RecordStatus.notRecording()
+        private set
 
     override fun startRecord() {
-        mediaRecorder.start()
-        coroutineScope.launch {
-            _recorderStatus.send(RecordStatus.recording())
-        }
+
+        omRecorder = OmRecorder.wav(
+            PullTransport.Default(mic(),
+                OnAudioChunkPulledListener { audioChunk -> }),
+            File(outputFilePath)
+        )
+
+        omRecorder.startRecording()
+        recordStatus = RecordStatus.recording()
+
     }
 
     override fun stopRecord() {
-        mediaRecorder.stop()
+        try {
+            omRecorder.stopRecording()
+        } finally {
+            recordStatus = RecordStatus.notRecording()
+        }
     }
 }

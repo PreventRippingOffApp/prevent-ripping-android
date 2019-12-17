@@ -12,7 +12,7 @@ internal class MapServiceImpl(
 
     override fun ZoomInTolocation(locationEntity: CurrentLocationEntity) {
         if (fragment is SupportMapFragment) {
-            val supportMapFragment = fragment as SupportMapFragment
+            val supportMapFragment = fragment
             supportMapFragment.getMapAsync {
                 it.animateCamera(
                     CameraUpdateFactory.newLatLngZoom(
