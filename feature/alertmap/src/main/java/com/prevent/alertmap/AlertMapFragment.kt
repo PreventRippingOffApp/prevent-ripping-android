@@ -99,8 +99,8 @@ class AlertMapFragment : Fragment() {
                     val recordStatus = recordService.recordStatus
                     try {
                         when (recordStatus) {
-                            is RecordStatus.notRecording -> recordService.startRecord()
-                            is RecordStatus.recording -> recordService.stopRecord()
+                            is RecordStatus.NotRecording -> recordService.startRecord()
+                            is RecordStatus.Recording -> recordService.stopRecord()
                         }
                     } finally {
                         refreshRecordButtonText()
@@ -138,8 +138,8 @@ class AlertMapFragment : Fragment() {
             launch(Dispatchers.Main) {
                 binding.fragmentAlertMapRecordFloatingActionButton.text =
                     when (recordService.recordStatus) {
-                        is RecordStatus.recording -> "録音中"
-                        is RecordStatus.notRecording -> "録音停止する"
+                        is RecordStatus.Recording -> "録音中"
+                        is RecordStatus.NotRecording -> "録音する"
                     }
             }
         }

@@ -5,3 +5,4 @@ dependencies {
 }
 
 apply from: '../../base_library.gradle'
+apply from: '../../data_module_reference.gradle'

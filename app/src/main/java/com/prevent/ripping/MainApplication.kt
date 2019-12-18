@@ -14,7 +14,6 @@ class MainApplication : Application() {
         val modules = listOf(
             alertMapModule,
             recordModule,
-            recordModule,
             recordDataModule
         )
 

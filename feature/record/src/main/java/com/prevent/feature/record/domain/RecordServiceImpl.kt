@@ -3,6 +3,13 @@ package com.prevent.feature.record.domain
 import android.content.Context
 import android.media.AudioFormat
 import android.media.MediaRecorder
+import com.prevent.data.recorddata.RecordDataRepository
+import com.prevent.data.recorddata.model.RecordDataEntity
+import com.prevent.data.recorddata.model.valueobject.AudioFilePathValueObject
+import com.prevent.data.recorddata.model.valueobject.RecordDateValueObject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import omrecorder.AudioRecordConfig
 import omrecorder.OmRecorder
 import omrecorder.PullTransport
@@ -13,7 +20,9 @@ import java.io.File
 
 
 class RecordServiceImpl(
-    context: Context
+    private val coroutineScope: CoroutineScope = GlobalScope,
+    private val context: Context,
+    private val recordDataRepository: RecordDataRepository
 ) : RecordService {
 
     private val outputFilePath = context.externalMediaDirs.first().absolutePath + "/output.wav"
@@ -33,7 +42,7 @@ class RecordServiceImpl(
         )
     }
 
-    override var recordStatus: RecordStatus = RecordStatus.notRecording()
+    override var recordStatus: RecordStatus = RecordStatus.NotRecording()
         private set
 
     override fun startRecord() {
@@ -45,7 +54,7 @@ class RecordServiceImpl(
         )
 
         omRecorder.startRecording()
-        recordStatus = RecordStatus.recording()
+        recordStatus = RecordStatus.Recording()
 
     }
 
@@ -53,7 +62,16 @@ class RecordServiceImpl(
         try {
             omRecorder.stopRecording()
         } finally {
-            recordStatus = RecordStatus.notRecording()
+            recordStatus = RecordStatus.NotRecording()
+            coroutineScope.launch {
+                recordDataRepository.addRecordData(
+                    RecordDataEntity(
+                        0,
+                        AudioFilePathValueObject(outputFilePath),
+                        RecordDateValueObject.now()
+                    )
+                )
+            }
         }
     }
 }
