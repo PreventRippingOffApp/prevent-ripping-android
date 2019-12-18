@@ -44,12 +44,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_gravity="bottom"
-                android:backgroundTint="@color/design_default_color_primary" />
+                android:backgroundTint="@color/primaryDarkColor" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/fragment_alert_map_record_floating_action_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/primaryColor"
                 android:padding="12dp"
                 android:text="録音するボタン"
                 app:layout_anchor="@id/fragment_alert_map_bottom_app_bar" />
