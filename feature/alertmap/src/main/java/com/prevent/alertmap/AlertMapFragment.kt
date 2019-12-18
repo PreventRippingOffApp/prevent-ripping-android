@@ -2,6 +2,7 @@ package com.prevent.alertmap
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.prevent.alertmap.databinding.FragmentAlertMapBinding
 import com.prevent.alertmap.service.MapService
 import com.prevent.feature.record.domain.RecordService
 import com.prevent.feature.record.domain.RecordStatus
+import com.prevent.feature.setting.PreferenceActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -104,6 +106,28 @@ class AlertMapFragment : Fragment() {
                         refreshRecordButtonText()
                     }
                 }
+            }
+
+        binding
+            .fragmentAlertMapBottomNavigationView
+            .menu
+            .findItem(R.id.setting)
+            .setOnMenuItemClickListener {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        PreferenceActivity::class.java
+                    )
+                )
+                true
+            }
+
+        binding.fragmentAlertMapBottomNavigationView
+            .menu
+            .findItem(R.id.record_log)
+            .setOnMenuItemClickListener {
+                // 録音ログについて表示する
+                true
             }
 
         return binding.root

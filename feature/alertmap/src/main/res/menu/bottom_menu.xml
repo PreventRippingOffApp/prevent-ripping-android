@@ -9,7 +9,7 @@
             app:showAsAction="always|collapseActionView" />
 
     <item
-            android:id="@+id/empty"
+            android:id="@+id/record_log"
             android:icon="@drawable/ic_menu_book_24px"
             android:title="Record Log"
             app:showAsAction="always|collapseActionView" />
