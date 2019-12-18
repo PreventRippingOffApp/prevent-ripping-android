@@ -49,6 +49,7 @@
             <com.google.android.material.bottomnavigation.BottomNavigationView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    app:itemIconTint="@color/primaryLightColor"
                     app:menu="@menu/bottom_menu" />
 
         </com.google.android.material.bottomappbar.BottomAppBar>
