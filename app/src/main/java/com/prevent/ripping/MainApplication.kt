@@ -2,6 +2,7 @@ package com.prevent.ripping
 
 import android.app.Application
 import com.prevent.alertmap.alertMapModule
+import com.prevent.data.recorddata.recordDataModule
 import com.prevent.feature.record.recordModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -12,7 +13,9 @@ class MainApplication : Application() {
 
         val modules = listOf(
             alertMapModule,
-            recordModule
+            recordModule,
+            recordModule,
+            recordDataModule
         )
 
         startKoin {
