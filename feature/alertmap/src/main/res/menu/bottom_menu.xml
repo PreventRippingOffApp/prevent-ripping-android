@@ -8,5 +8,9 @@
             android:title="setting"
             app:showAsAction="always|collapseActionView" />
 
-    <item android:id="@+id/empty" />
+    <item
+            android:id="@+id/empty"
+            android:icon="@drawable/ic_menu_book_24px"
+            android:title="Record Log"
+            app:showAsAction="always|collapseActionView" />
 </menu>
