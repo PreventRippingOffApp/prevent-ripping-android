@@ -139,7 +139,7 @@ class AlertMapFragment : Fragment() {
                 binding.fragmentAlertMapRecordFloatingActionButton.text =
                     when (recordService.recordStatus) {
                         is RecordStatus.Recording -> "録音中"
-                        is RecordStatus.NotRecording -> "録音停止する"
+                        is RecordStatus.NotRecording -> "録音する"
                     }
             }
         }
