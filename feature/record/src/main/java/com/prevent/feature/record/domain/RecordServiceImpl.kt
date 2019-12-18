@@ -3,8 +3,6 @@ package com.prevent.feature.record.domain
 import android.content.Context
 import android.media.AudioFormat
 import android.media.MediaRecorder
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.GlobalScope
 import omrecorder.AudioRecordConfig
 import omrecorder.OmRecorder
 import omrecorder.PullTransport
@@ -15,8 +13,7 @@ import java.io.File
 
 
 class RecordServiceImpl(
-    private val coroutineScope: CoroutineScope = GlobalScope,
-    private val context: Context
+    context: Context
 ) : RecordService {
 
     private val outputFilePath = context.externalMediaDirs.first().absolutePath + "/output.wav"
