@@ -1,6 +1,6 @@
 include ':app', ':resource'
 
-["feature"]
+["feature", "data"]
         .asList()
         .each { folderName ->
             file(folderName)
