@@ -44,7 +44,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_gravity="bottom"
-                android:backgroundTint="@color/primaryDarkColor" />
+                android:backgroundTint="@color/primaryDarkColor">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:menu="@menu/bottom_menu" />
+
+        </com.google.android.material.bottomappbar.BottomAppBar>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/fragment_alert_map_record_floating_action_button"
