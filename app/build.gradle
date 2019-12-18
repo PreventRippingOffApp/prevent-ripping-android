@@ -9,6 +9,7 @@ android {
 dependencies {
     implementation project(path: ':alertmap')
     implementation project(path: ':record')
+    implementation project(path: ':recorddata')
     implementation project(path: ':setting')
 }
 
