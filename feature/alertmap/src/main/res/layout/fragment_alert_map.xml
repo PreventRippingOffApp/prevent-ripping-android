@@ -47,6 +47,7 @@
                 android:backgroundTint="@color/primaryDarkColor">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/fragment_alert_map_bottom_navigation_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:itemIconTint="@color/primaryLightColor"
