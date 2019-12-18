@@ -14,6 +14,7 @@ import com.prevent.alertmap.databinding.FragmentAlertMapBinding
 import com.prevent.alertmap.service.MapService
 import com.prevent.feature.record.domain.RecordService
 import com.prevent.feature.record.domain.RecordStatus
+import com.prevent.feature.record.list.RecordListDialog
 import com.prevent.feature.setting.PreferenceActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -126,7 +127,8 @@ class AlertMapFragment : Fragment() {
             .menu
             .findItem(R.id.record_log)
             .setOnMenuItemClickListener {
-                // 録音ログについて表示する
+                val dialog = RecordListDialog()
+                dialog.showNow(parentFragmentManager, "tag")
                 true
             }
 
