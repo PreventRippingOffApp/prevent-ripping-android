@@ -36,7 +36,7 @@ class RecordServiceImpl(
         )
     }
 
-    override var recordStatus: RecordStatus = RecordStatus.notRecording()
+    override var recordStatus: RecordStatus = RecordStatus.NotRecording()
         private set
 
     override fun startRecord() {
@@ -48,7 +48,7 @@ class RecordServiceImpl(
         )
 
         omRecorder.startRecording()
-        recordStatus = RecordStatus.recording()
+        recordStatus = RecordStatus.Recording()
 
     }
 
@@ -56,7 +56,7 @@ class RecordServiceImpl(
         try {
             omRecorder.stopRecording()
         } finally {
-            recordStatus = RecordStatus.notRecording()
+            recordStatus = RecordStatus.NotRecording()
         }
     }
 }
