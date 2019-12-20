@@ -42,16 +42,41 @@
         <com.google.android.material.bottomappbar.BottomAppBar
                 android:id="@+id/fragment_alert_map_bottom_app_bar"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:backgroundTint="@color/primaryDarkColor">
+                android:backgroundTint="@color/primaryDarkColor"
+                android:foregroundTint="@color/whiteColor"
+                app:fabAlignmentMode="center">
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                    android:id="@+id/fragment_alert_map_bottom_navigation_view"
+            <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:itemIconTint="@color/primaryLightColor"
-                    app:menu="@menu/bottom_menu" />
+                    android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/fragment_alert_map_setting_image_view"
+                        style="?android:attr/selectableItemBackground"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:src="@drawable/ic_settings_applications_24px"
+                        android:tint="@color/whiteColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/fragment_alert_map_record_log_image_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:src="@drawable/ic_menu_book_24px"
+                        android:tint="@color/whiteColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </com.google.android.material.bottomappbar.BottomAppBar>
 

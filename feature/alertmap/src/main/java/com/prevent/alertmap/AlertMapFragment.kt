@@ -110,26 +110,20 @@ class AlertMapFragment : Fragment() {
             }
 
         binding
-            .fragmentAlertMapBottomNavigationView
-            .menu
-            .findItem(R.id.setting)
-            .setOnMenuItemClickListener {
+            .fragmentAlertMapSettingImageView
+            .setOnClickListener {
                 startActivity(
                     Intent(
                         requireContext(),
                         PreferenceActivity::class.java
                     )
                 )
-                true
             }
 
-        binding.fragmentAlertMapBottomNavigationView
-            .menu
-            .findItem(R.id.record_log)
-            .setOnMenuItemClickListener {
+        binding.fragmentAlertMapRecordLogImageView
+            .setOnClickListener {
                 val dialog = RecordListDialog()
                 dialog.showNow(parentFragmentManager, "tag")
-                true
             }
 
         return binding.root
