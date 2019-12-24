@@ -8,7 +8,6 @@ android {
 
 dependencies {
     implementation project(path: ':alertmap')
-    implementation project(path: ':alertmap-data')
     implementation project(path: ':record')
     implementation project(path: ':setting')
 }
