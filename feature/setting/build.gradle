@@ -5,3 +5,5 @@ apply from: '../../base_library.gradle'
 dependencies {
     implementation "androidx.preference:preference-ktx:1.1.0"
 }
+
+apply from: '../../base_module_reference.gradle'

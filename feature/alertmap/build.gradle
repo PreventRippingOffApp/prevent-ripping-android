@@ -12,3 +12,4 @@ dependencies {
 }
 
 apply from: '../../base_library.gradle'
+apply from: '../../base_module_reference.gradle'
