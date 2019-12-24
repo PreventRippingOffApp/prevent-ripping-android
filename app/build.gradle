@@ -1,4 +1,1 @@
 apply from: '../app.gradle'
-
-apply from: '../data_module_reference.gradle'
-apply from: '../base_module_reference.gradle'
