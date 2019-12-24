@@ -59,6 +59,10 @@ class PreferenceRootActivity : PreferenceFragmentCompat() {
                     max = 255
                     min = 0
                     summary = "ダッシュボード画面で表示する危険度です。"
+                    setOnPreferenceClickListener {
+                        Toast.makeText(context, "tapped", Toast.LENGTH_SHORT).show()
+                        true
+                    }
                 }
 
             debugSettingCategory.addPreference(alertLevelPreference)
