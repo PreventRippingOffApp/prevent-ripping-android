@@ -1,15 +1,9 @@
-apply plugin: 'com.android.library'
+apply from: "$rootDir/feature.gradle"
 
 dependencies {
-    // Goolge Play services
-    implementation "com.google.android.gms:play-services-location:17.0.0"
-    implementation "com.google.android.gms:play-services-maps:17.0.0"
-
     // reference record feature
     implementation project(path: ':record')
     implementation project(path: ':setting')
 
 }
 
-apply from: '../../base_library.gradle'
-apply from: '../../base_module_reference.gradle'

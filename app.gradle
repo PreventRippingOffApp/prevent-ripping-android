@@ -1,0 +1,15 @@
+apply plugin: 'com.android.application'
+
+apply from: "$rootDir/base.gradle"
+
+android {
+    defaultConfig {
+        applicationId "com.prevent.ripping"
+    }
+}
+
+dependencies {
+    implementation project(path: ':alertmap')
+    implementation project(path: ':record')
+    implementation project(path: ':setting')
+}

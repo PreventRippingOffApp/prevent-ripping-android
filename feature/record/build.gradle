@@ -1,9 +1,1 @@
-apply plugin: 'com.android.library'
-
-dependencies {
-    implementation "com.kailashdabhi:om-recorder:1.1.5"
-}
-
-apply from: '../../base_library.gradle'
-apply from: '../../data_module_reference.gradle'
-apply from: '../../base_module_reference.gradle'
+apply from: "$rootDir/feature.gradle"

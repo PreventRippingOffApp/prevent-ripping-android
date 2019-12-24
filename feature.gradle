@@ -1,0 +1,5 @@
+apply plugin: 'com.android.library'
+
+apply from: "$rootDir/base.gradle"
+apply from: "$rootDir/base_module_reference.gradle"
+apply from: "$rootDir/data_module_reference.gradle"
