@@ -1,11 +1,13 @@
 package com.prevent.feature.setting
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SeekBarPreference
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.prevent.alertmap_data.feature.domain.AlertLevelReadonlyRepository
 import com.prevent.alertmap_data.feature.domain.AlertLevelRepository
 import com.prevent.alertmap_data.feature.entity.AlertLevelEntity
@@ -52,6 +54,26 @@ class PreferenceRootFragment : PreferenceFragmentCompat() {
         }
 
         preferenceCategory.addPreference(preference2)
+
+        val licensePreferenceCategory = PreferenceCategory(preferenceScreen.context)
+            .also { preferenceScreen.addPreference(it) }
+            .apply {
+                title = "ライセンス情報"
+            }
+
+        val licensePreference = Preference(preferenceScreen.context).apply {
+            title = "ライセンス情報を見る"
+            setOnPreferenceClickListener {
+                startActivity(
+                    Intent(
+                        context,
+                        OssLicensesMenuActivity::class.java
+                    )
+                )
+                true
+            }
+        }
+        licensePreferenceCategory.addPreference(licensePreference)
 
         if (BuildConfig.BUILD_TYPE == "debug") {
             val debugSettingCategory = PreferenceCategory(
