@@ -6,8 +6,18 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SeekBarPreference
+import com.prevent.alertmap_data.feature.domain.AlertLevelReadonlyRepository
+import com.prevent.alertmap_data.feature.domain.AlertLevelRepository
+import com.prevent.alertmap_data.feature.entity.AlertLevelEntity
+import com.prevent.alertmap_data.feature.entity.LocationEntity
+import com.prevent.alertmap_data.feature.entity.valueobject.AlertlevelValueObject
+import org.koin.android.ext.android.inject
 
 class PreferenceRootActivity : PreferenceFragmentCompat() {
+
+    private val alertLevelRepository: AlertLevelRepository by inject()
+    private val alertlevelReadonlyRepository: AlertLevelReadonlyRepository by inject()
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.main_preference, rootKey)
 
@@ -60,11 +70,22 @@ class PreferenceRootActivity : PreferenceFragmentCompat() {
                     min = 0
                     summary = "ダッシュボード画面で表示する危険度です。"
                     setOnPreferenceClickListener {
-                        Toast.makeText(context, "tapped", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    value = alertlevelReadonlyRepository.readAlertLevel(LocationEntity.default())
+                        .alertlevelValueObject.value
+
+                    this.setOnPreferenceChangeListener { preference, newValue ->
+                        val entity = AlertLevelEntity(
+                            0,
+                            AlertlevelValueObject.create(newValue as Int)
+                        )
+                        alertLevelRepository.storeAlertLevel(
+                            entity
+                        )
                         true
                     }
                 }
-
             debugSettingCategory.addPreference(alertLevelPreference)
 
 

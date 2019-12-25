@@ -12,7 +12,7 @@ class AlertlevelValueObject private constructor(
         }
 
         fun create(value: Int): AlertlevelValueObject {
-            if (0 < value && value < 256) {
+            if (value in 0..255) {
                 return AlertlevelValueObject(value)
             } else {
                 throw InvalidParameterException("$value is invalid for AlertLevel")
