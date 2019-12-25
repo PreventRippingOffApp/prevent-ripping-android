@@ -18,11 +18,14 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-        debug {
+    }
 
+    flavorDimensions "default"
+
+    productFlavors {
+        production {
         }
         demo {
-
         }
     }
 
