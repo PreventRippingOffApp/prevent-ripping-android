@@ -1,16 +1,1 @@
-apply plugin: 'com.android.application'
-
-android {
-    defaultConfig {
-        applicationId "com.prevent.ripping"
-    }
-}
-
-dependencies {
-    implementation project(path: ':alertmap')
-    implementation project(path: ':record')
-    implementation project(path: ':setting')
-}
-
-apply from: '../base_library.gradle'
-apply from: '../data_module_reference.gradle'
+apply from: '../app.gradle'

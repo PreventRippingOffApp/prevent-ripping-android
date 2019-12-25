@@ -1,9 +1,5 @@
-apply from: "$rootDir/feature.gradle"
-
 dependencies {
-    // reference record feature
+    implementation project(path: ':alertmap')
     implementation project(path: ':record')
     implementation project(path: ':setting')
-
 }
-

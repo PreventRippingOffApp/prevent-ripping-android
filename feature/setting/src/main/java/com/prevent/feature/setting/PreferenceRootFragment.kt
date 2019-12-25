@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.SeekBarPreference
 
 class PreferenceRootActivity : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -41,5 +42,32 @@ class PreferenceRootActivity : PreferenceFragmentCompat() {
         }
 
         preferenceCategory.addPreference(preference2)
+
+        if (BuildConfig.BUILD_TYPE == "debug") {
+            val debugSettingCategory = PreferenceCategory(
+                preferenceScreen.context
+            )
+                .also { preferenceScreen.addPreference(it) }
+                .apply {
+                    title = "デバッグ設定"
+                }
+
+            val alertLevelPreference = SeekBarPreference(preferenceScreen.context)
+                .apply {
+                    title = "危険度設定"
+                    showSeekBarValue = true
+                    max = 255
+                    min = 0
+                    summary = "ダッシュボード画面で表示する危険度です。"
+                    setOnPreferenceClickListener {
+                        Toast.makeText(context, "tapped", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                }
+
+            debugSettingCategory.addPreference(alertLevelPreference)
+
+
+        }
     }
 }

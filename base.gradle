@@ -20,6 +20,15 @@ android {
         }
     }
 
+    flavorDimensions "default"
+
+    productFlavors {
+        production {
+        }
+        demo {
+        }
+    }
+
     dataBinding {
         enabled = true
     }
@@ -28,20 +37,22 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(path: ':resource')
-    implementation project(path: ':ddd')
+    // kotlin base library
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.61"
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    // for Unit test
     testImplementation 'junit:junit:4.12'
+
+    // mokito
+    testImplementation("org.mockito:mockito-core:2.+")
+
+    // for Android Test
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-    // Permission Dispatcher
-    implementation "org.permissionsdispatcher:permissionsdispatcher:4.6.0"
-    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:4.6.0"
 
     // Koin
     implementation "org.koin:koin-core:2.0.1"
@@ -60,6 +71,10 @@ dependencies {
     // material componet for Android
     implementation "com.google.android.material:material:1.2.0-alpha02"
 
+    // Permission Dispatcher
+    implementation "org.permissionsdispatcher:permissionsdispatcher:4.6.0"
+    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:4.6.0"
+
     // ktx
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
     implementation "androidx.core:core-ktx:1.1.0"
@@ -69,15 +84,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc03"
 
     implementation 'androidx.activity:activity-ktx:1.1.0-rc03'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
     // For Unit Test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-    // mokito
-    testImplementation("org.mockito:mockito-core:2.+")
 
     // Naviigation library
     implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0"
@@ -88,4 +99,20 @@ dependencies {
     implementation "androidx.room:room-ktx:2.2.2"
     kapt "androidx.room:room-compiler:2.2.2"
     androidTestImplementation "androidx.room:room-testing:2.2.2"
+
+    // Preference
+    implementation "androidx.preference:preference-ktx:1.1.0"
+
+    // recorder
+    implementation "com.kailashdabhi:om-recorder:1.1.5"
+
+    // Goolge Play services
+    implementation "com.google.android.gms:play-services-location:17.0.0"
+    implementation "com.google.android.gms:play-services-maps:17.0.0"
+
+    // kotlin refrection library
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.3.61"
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.6'
 }
