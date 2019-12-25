@@ -4,11 +4,11 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-//data class RecordDataEntity(
+// data class RecordDataEntity(
 //    val id: Int,
 //    val audioFilePath: AudioFilePathValueObject,
 //    val recordDate: RecordDateValueObject = RecordDateValueObject.now()
-//)
+// )
 
 @Entity(tableName = "record_data")
 data class RecordDataModel(

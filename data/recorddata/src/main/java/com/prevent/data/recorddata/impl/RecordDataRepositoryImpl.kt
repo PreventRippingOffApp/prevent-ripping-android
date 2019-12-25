@@ -13,15 +13,15 @@ internal class RecordDataRepositoryImpl(
 
     val recordDataDao: RecordDataDao = RecordDataDatabase.getDatabase(context).recordDataDao()
 
-    override suspend fun updateRecordData(recordDataEntity: RecordDataEntity): Unit {
+    override suspend fun updateRecordData(recordDataEntity: RecordDataEntity) {
         recordDataDao.updateRecordData(recordDataEntity.convertTo())
     }
 
-    override suspend fun addRecordData(recordDataEntity: RecordDataEntity): Unit {
+    override suspend fun addRecordData(recordDataEntity: RecordDataEntity) {
         recordDataDao.insertRecordData(recordDataEntity.convertTo())
     }
 
-    override suspend fun removeRecordData(): Unit {
+    override suspend fun removeRecordData() {
         recordDataDao.removeAll()
     }
 
