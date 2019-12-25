@@ -50,7 +50,7 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: ./gradlew buildDemo assembleDemo
+          command: ./gradlew bundleDemo assembleDemo
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: app/build/reports
           destination: reports
@@ -68,7 +68,7 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: ./gradlew buildProduction assembleProduction
+          command: ./gradlew bundleProduction assembleProduction
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: app/build/reports
           destination: reports
