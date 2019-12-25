@@ -136,13 +136,13 @@ workflows:
             - prepare_ci
       - DemoBuild:
           requires:
-            - DebugBuild
+            - prepare_ci
       - ProductionBuild:
           requires:
-            - DemoBuild
+            - prepare_ci
       - ReleaseBuild:
           requires:
-            - ProductionBuild
+            - prepare_ci
       - test:
           requires:
             - DebugBuild
