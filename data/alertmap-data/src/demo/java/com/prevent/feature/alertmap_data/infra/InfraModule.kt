@@ -5,7 +5,6 @@ import com.prevent.alertmap_data.feature.domain.AlertLevelRepository
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
-
 val infraModule = module {
     factory { AlertLevelPreference(androidApplication()) }
 

@@ -7,6 +7,7 @@ import com.prevent.data.recorddata.RecordDataRepository
 import com.prevent.data.recorddata.model.RecordDataEntity
 import com.prevent.data.recorddata.model.valueobject.AudioFilePathValueObject
 import com.prevent.data.recorddata.model.valueobject.RecordDateValueObject
+import java.io.File
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -16,8 +17,6 @@ import omrecorder.PullTransport
 import omrecorder.PullTransport.OnAudioChunkPulledListener
 import omrecorder.PullableSource
 import omrecorder.Recorder
-import java.io.File
-
 
 class RecordServiceImpl(
     private val coroutineScope: CoroutineScope = GlobalScope,
@@ -55,7 +54,6 @@ class RecordServiceImpl(
 
         omRecorder.startRecording()
         recordStatus = RecordStatus.Recording()
-
     }
 
     override fun stopRecord() {

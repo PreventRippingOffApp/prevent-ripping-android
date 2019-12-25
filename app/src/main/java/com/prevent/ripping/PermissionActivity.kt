@@ -20,7 +20,6 @@ class PermissionActivity : AppCompatActivity(R.layout.activity_permission) {
         moveNowLocationWithPermissionCheck()
     }
 
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -56,7 +55,6 @@ class PermissionActivity : AppCompatActivity(R.layout.activity_permission) {
         Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
     fun onLocationPermissionDenied() {
-
     }
 
     @OnNeverAskAgain(
@@ -65,6 +63,5 @@ class PermissionActivity : AppCompatActivity(R.layout.activity_permission) {
         Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
     fun onLocationPermssionNeverAsAgain() {
-
     }
 }
