@@ -8,13 +8,12 @@ import com.prevent.alertmap_data.feature.entity.valueobject.AlertlevelValueObjec
 
 internal class AlertLevelRepositoryImpl : AlertLevelReadonlyRepository, AlertLevelRepository {
     override fun readAlertLevel(locationEntity: LocationEntity): AlertLevelEntity {
-        //TODO after implementation get from remote APi Call
+        // TODO after implementation get from remote APi Call
         return AlertLevelEntity(0, AlertlevelValueObject.create(30))
     }
 
     override fun storeAlertLevel(alertLevelEntity: AlertLevelEntity) {
         // Noting doing on production flavor
-        //TODO after implementation logging process
+        // TODO after implementation logging process
     }
-
 }
