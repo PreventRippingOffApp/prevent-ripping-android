@@ -14,5 +14,5 @@ val alertMapModule = module {
 
     factory { (fragment: Fragment) -> MapServiceImpl(fragment) as MapService }
 
-    viewModel { AlertMapViewModel(get()) }
+    viewModel { AlertMapViewModel(get(), get()) }
 }

@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.prevent.alertmap.databinding.FragmentAlertMapBinding
@@ -56,42 +55,25 @@ class AlertMapFragment : Fragment() {
                 mapService.ZoomInTolocation(it)
             }
 
-        binding.fragmentAlertMapDangerLevelSeekbar
-            .setOnSeekBarChangeListener(
-                object : SeekBar.OnSeekBarChangeListener {
-                    override fun onProgressChanged(
-                        seekBar: SeekBar?,
-                        progress: Int,
-                        fromUser: Boolean
-                    ) {
-                        val animation = ValueAnimator
-                            .ofInt(
-                                binding.fragmentAlertMapDangerLevelBar!!.layoutParams.height,
-                                this@AlertMapFragment.view!!.height / 256 * progress
-                            )
-                        animation.addUpdateListener {
-                            val animationValue = it.animatedValue as Int
-                            val levelBarLayoutParams =
-                                binding.fragmentAlertMapDangerLevelBar.layoutParams
-                            levelBarLayoutParams.height = animationValue
+        viewModel
+            .alertLevelLiveData
+            .observeForever {
+                val animation = ValueAnimator
+                    .ofInt(
+                        binding.fragmentAlertMapDangerLevelBar!!.layoutParams.height,
+                        this@AlertMapFragment.view!!.height / 256 * it.alertLevel.value
+                    )
+                animation.addUpdateListener {
+                    val animationValue = it.animatedValue as Int
+                    val levelBarLayoutParams =
+                        binding.fragmentAlertMapDangerLevelBar.layoutParams
+                    levelBarLayoutParams.height = animationValue
 
-                            binding.fragmentAlertMapDangerLevelBar.layoutParams =
-                                levelBarLayoutParams
-                        }
-                        animation.start()
-                    }
-
-
-                    override fun onStartTrackingTouch(seekBar: SeekBar?) {
-
-                    }
-
-                    override fun onStopTrackingTouch(seekBar: SeekBar?) {
-
-                    }
-                })
-
-
+                    binding.fragmentAlertMapDangerLevelBar.layoutParams =
+                        levelBarLayoutParams
+                }
+                animation.start()
+            }
 
         binding
             .fragmentAlertMapRecordFloatingActionButton
