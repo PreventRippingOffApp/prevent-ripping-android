@@ -13,10 +13,10 @@ internal class VibrationServiceImpl(
         vibrator?.let {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                 val vibrationEffect =
-                    VibrationEffect.createOneShot(300, VibrationEffect.DEFAULT_AMPLITUDE)
+                    VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE)
                 vibrator.vibrate(vibrationEffect)
             } else {
-                vibrator.vibrate(300)
+                vibrator.vibrate(50)
             }
         }
     }
