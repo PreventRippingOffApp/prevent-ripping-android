@@ -22,7 +22,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Gradle
-        run: ./gradlew asembleDemo
+        run: ./gradlew assembleDemo
   build_production_debug:
     runs-on: ubuntu-latest
     steps:
@@ -32,7 +32,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Gradle
-        run: ./gradlew asembleProduction
+        run: ./gradlew assembleProduction
   bundle_demo_debug:
     runs-on: ubuntu-latest
     steps:
