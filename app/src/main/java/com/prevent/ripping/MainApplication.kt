@@ -15,9 +15,8 @@ class MainApplication : Application() {
         val modules = listOf(
             alertMapModule,
             recordModule,
-            recordDataModule,
-            alertMapDataModule
-        )
+            recordDataModule
+        ) + alertMapDataModule
 
         startKoin {
             androidContext(this@MainApplication)
