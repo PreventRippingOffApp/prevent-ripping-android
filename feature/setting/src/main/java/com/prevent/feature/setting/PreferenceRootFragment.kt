@@ -9,6 +9,7 @@ import androidx.preference.SeekBarPreference
 import com.prevent.alertmap_data.feature.domain.AlertLevelReadonlyRepository
 import com.prevent.alertmap_data.feature.domain.AlertLevelRepository
 import com.prevent.alertmap_data.feature.entity.AlertLevelEntity
+import com.prevent.alertmap_data.feature.entity.LocationEntity
 import com.prevent.alertmap_data.feature.entity.valueobject.AlertlevelValueObject
 import org.koin.android.ext.android.inject
 
@@ -71,6 +72,8 @@ class PreferenceRootActivity : PreferenceFragmentCompat() {
                     setOnPreferenceClickListener {
                         true
                     }
+                    value = alertlevelReadonlyRepository.readAlertLevel(LocationEntity.default())
+                        .alertlevelValueObject.value
 
                     this.setOnPreferenceChangeListener { preference, newValue ->
                         val entity = AlertLevelEntity(
@@ -82,9 +85,7 @@ class PreferenceRootActivity : PreferenceFragmentCompat() {
                         )
                         true
                     }
-
                 }
-
             debugSettingCategory.addPreference(alertLevelPreference)
 
 

@@ -111,6 +111,12 @@ class AlertMapFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        viewModel.refreshAlertLevel()
+    }
+
     private fun refreshRecordButtonText() {
         this.lifecycleScope.launch(Dispatchers.Main) {
             launch(Dispatchers.Main) {

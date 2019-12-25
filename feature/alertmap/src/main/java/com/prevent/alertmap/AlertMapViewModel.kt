@@ -3,7 +3,7 @@ package com.prevent.alertmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.prevent.alertmap.entity.AlertLevelViewEntity
+import androidx.lifecycle.viewModelScope
 import com.prevent.alertmap.entity.CurrentLocationEntity
 import com.prevent.alertmap.usecase.FetchCurrentLocationUsecase
 
@@ -15,5 +15,10 @@ internal class AlertMapViewModel(
         featchCurrentLocationUsecase.execute()
     )
 
-    val alertLevelLiveData: LiveData<AlertLevelViewEntity> = alertLevelLiveDataFactory.create()
+    val alertLevelLiveData: AlertlevelLiveData =
+        alertLevelLiveDataFactory.create(viewModelScope)
+
+    fun refreshAlertLevel() {
+        alertLevelLiveData.refresh()
+    }
 }

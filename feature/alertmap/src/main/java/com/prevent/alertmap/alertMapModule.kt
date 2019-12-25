@@ -13,6 +13,7 @@ val alertMapModule = module {
     factory { FetchCurrentLocationUsecaseImpl(androidApplication()) as FetchCurrentLocationUsecase }
 
     factory { (fragment: Fragment) -> MapServiceImpl(fragment) as MapService }
+    factory { AlertLevelLiveDataFactory(get()) }
 
     viewModel { AlertMapViewModel(get(), get()) }
 }
