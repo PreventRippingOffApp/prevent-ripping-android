@@ -39,6 +39,42 @@ jobs:
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: app/build/test-results
 
+  DemoBuild:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-29-node
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run Build
+          command: ./gradlew buildDemo assembleDemo
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: app/build/reports
+          destination: reports
+      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: app/build/test-results
+
+  ProductionBuild:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-29-node
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run Build
+          command: ./gradlew buildProduction assembleProduction
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: app/build/reports
+          destination: reports
+      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: app/build/test-results
+
   ReleaseBuild:
     working_directory: ~/code
     docker:
@@ -98,9 +134,15 @@ workflows:
       - DebugBuild:
           requires:
             - prepare_ci
-      - ReleaseBuild:
+      - DemoBuild:
           requires:
             - DebugBuild
+      - ProductionBuild:
+          requires:
+            - DemoBuild
+      - ReleaseBuild:
+          requires:
+            - ProductionBuild
       - test:
           requires:
             - DebugBuild
