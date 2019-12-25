@@ -13,7 +13,7 @@ import com.prevent.alertmap_data.feature.entity.LocationEntity
 import com.prevent.alertmap_data.feature.entity.valueobject.AlertlevelValueObject
 import org.koin.android.ext.android.inject
 
-class PreferenceRootActivity : PreferenceFragmentCompat() {
+class PreferenceRootFragment : PreferenceFragmentCompat() {
 
     private val alertLevelRepository: AlertLevelRepository by inject()
     private val alertlevelReadonlyRepository: AlertLevelReadonlyRepository by inject()
@@ -87,8 +87,6 @@ class PreferenceRootActivity : PreferenceFragmentCompat() {
                     }
                 }
             debugSettingCategory.addPreference(alertLevelPreference)
-
-
         }
     }
 }
