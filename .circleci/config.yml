@@ -31,12 +31,6 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: pwd
-          command: pwd
-      - run:
-          name: ls
-          command: ls
-      - run:
           name: Run Build
           command: ./gradlew assembleDebug
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
