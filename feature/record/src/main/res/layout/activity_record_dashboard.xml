@@ -195,6 +195,7 @@
                     android:text="ALERT WITH EMAIL"
                     app:cornerRadius="25dp"
                     app:icon="@drawable/ic_email_24px"
+                    app:iconGravity="textStart"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
