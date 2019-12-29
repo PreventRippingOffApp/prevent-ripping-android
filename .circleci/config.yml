@@ -135,7 +135,7 @@ workflows:
             - prepare_ci
       - test:
           requires:
-            - DebugBuild
+            - AssembleDemoDebug
       - lint:
           requires:
-            - DebugBuild
+            - AssembleDemoDebug
