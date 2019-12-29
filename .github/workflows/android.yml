@@ -23,7 +23,7 @@ jobs:
           java-version: 1.8
       - name: Build with Gradle
         run: ./gradlew assembleDemoDebug
-  build_production_debug:
+  asssemble_production_debug:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
