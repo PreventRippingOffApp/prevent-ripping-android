@@ -75,7 +75,6 @@ class RecordDashboardActivity : FragmentActivity(R.layout.activity_record_dashbo
                     )
                 )
             }
-
     }
 
     private fun navigateLocationLogActivity() {
