@@ -10,15 +10,15 @@ import androidx.preference.SeekBarPreference
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.prevent.alertmap_data.feature.domain.AlertLevelReadonlyRepository
 import com.prevent.alertmap_data.feature.domain.AlertLevelRepository
-import com.prevent.alertmap_data.feature.entity.AlertLevelEntity
-import com.prevent.alertmap_data.feature.entity.LocationEntity
-import com.prevent.alertmap_data.feature.entity.valueobject.AlertlevelValueObject
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PreferenceRootFragment : PreferenceFragmentCompat() {
 
     private val alertLevelRepository: AlertLevelRepository by inject()
     private val alertlevelReadonlyRepository: AlertLevelReadonlyRepository by inject()
+
+    private val preferenceRootFragmentViewModel: PreferenceRootFragmentViewModel by viewModel()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.main_preference, rootKey)
@@ -94,20 +94,19 @@ class PreferenceRootFragment : PreferenceFragmentCompat() {
                     setOnPreferenceClickListener {
                         true
                     }
-                    value = alertlevelReadonlyRepository.readAlertLevel(LocationEntity.default())
-                        .alertlevelValueObject.value
 
                     this.setOnPreferenceChangeListener { preference, newValue ->
-                        val entity = AlertLevelEntity(
-                            0,
-                            AlertlevelValueObject.create(newValue as Int)
-                        )
-                        alertLevelRepository.storeAlertLevel(
-                            entity
-                        )
+                        preferenceRootFragmentViewModel.updateAlertLevel(newValue as Int)
                         true
                     }
                 }
+
+            preferenceRootFragmentViewModel
+                .alertlevelLiveData
+                .observeForever {
+                    alertLevelPreference.value = it
+                }
+
             debugSettingCategory.addPreference(alertLevelPreference)
         }
     }
