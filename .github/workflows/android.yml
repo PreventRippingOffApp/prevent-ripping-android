@@ -13,7 +13,7 @@ jobs:
           java-version: 1.8
       - name: Build with Gradle
         run: ./gradlew build
-  build_demo_debug:
+  assemble_demo_debug:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
