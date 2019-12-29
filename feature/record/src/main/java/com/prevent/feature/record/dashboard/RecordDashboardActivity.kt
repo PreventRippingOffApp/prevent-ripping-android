@@ -48,11 +48,13 @@ class RecordDashboardActivity : FragmentActivity(R.layout.activity_record_dashbo
 
         activity_record_dashboard_show_all_material_button
             .setOnClickListener {
-                val transitionOption = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    this,
-                    map,
-                    "map"
-                )
+                val transitionOption = ActivityOptionsCompat
+                    .makeSceneTransitionAnimation(
+                        this,
+                        map,
+                        "map"
+                    )
+
                 startActivity(
                     Intent(
                         applicationContext,

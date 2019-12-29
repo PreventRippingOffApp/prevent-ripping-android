@@ -19,9 +19,14 @@ class LocationLogActivity : FragmentActivity(R.layout.activity_location_log) {
         )
 
         binding.map.transitionName = "map"
-        binding.map.layoutTransition = LayoutTransition().apply {
-            this.setInterpolator(LayoutTransition.APPEARING, AccelerateInterpolator())
-        }
+
+        window.sharedElementEnterTransition = TransitionInflater.from(applicationContext)
+            .inflateTransition(R.transition.activity_location_log_transition)
+
+//        binding.map.layoutTransition = LayoutTransition().apply {
+//            this.setInterpolator(LayoutTransition.APPEARING, AccelerateInterpolator())
+//            this.setDuration(100000)
+//        }
     }
 
     override fun onBackPressed() {
