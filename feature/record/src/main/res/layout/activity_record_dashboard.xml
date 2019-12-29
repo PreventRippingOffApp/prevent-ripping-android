@@ -76,6 +76,7 @@
                             android:layout_height="24dp"
                             android:background="?android:attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
+                            android:contentDescription="help icon for rip off monitoring"
                             android:focusable="true"
                             android:src="@drawable/ic_help_24px"
                             android:tint="@color/primaryDarkColor"
