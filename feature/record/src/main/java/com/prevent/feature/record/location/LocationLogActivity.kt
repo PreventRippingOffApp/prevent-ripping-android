@@ -1,9 +1,8 @@
 package com.prevent.feature.record.location
 
-import android.animation.LayoutTransition
 import android.os.Bundle
 import android.os.PersistableBundle
-import android.view.animation.AccelerateInterpolator
+import android.transition.TransitionInflater
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
