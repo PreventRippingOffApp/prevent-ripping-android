@@ -7,11 +7,13 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentActivity
 import com.google.android.gms.maps.SupportMapFragment
 import com.prevent.feature.record.R
+import com.prevent.feature.record.dashboard.help.RipOffMonitoringHelpActivity
 import com.prevent.feature.record.list.RecordListDialog
 import com.prevent.feature.record.location.LocationLogActivity
 import com.prevent.feature.record.talk.list.TalkListDialog
 import kotlinx.android.synthetic.main.activity_record_dashboard.activity_record_dashboard_alert_with_mail_button
 import kotlinx.android.synthetic.main.activity_record_dashboard.activity_record_dashboard_location_log_card_view
+import kotlinx.android.synthetic.main.activity_record_dashboard.activity_record_dashboard_rip_off_monitoring_help_image_view
 import kotlinx.android.synthetic.main.activity_record_dashboard.activity_record_dashboard_rip_off_records_material_text_button
 import kotlinx.android.synthetic.main.activity_record_dashboard.activity_record_dashboard_rip_off_talk_material_text_button
 import kotlinx.android.synthetic.main.activity_record_dashboard.activity_record_dashboard_show_all_material_button
@@ -63,6 +65,16 @@ class RecordDashboardActivity : FragmentActivity(R.layout.activity_record_dashbo
                 navigateLocationLogActivity()
             }
         }
+
+        activity_record_dashboard_rip_off_monitoring_help_image_view
+            .setOnClickListener {
+                startActivity(
+                    Intent(
+                        applicationContext,
+                        RipOffMonitoringHelpActivity::class.java
+                    )
+                )
+            }
 
     }
 

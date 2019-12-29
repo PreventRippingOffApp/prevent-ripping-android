@@ -4,5 +4,6 @@
     <application>
         <activity android:name=".dashboard.RecordDashboardActivity" />
         <activity android:name=".location.LocationLogActivity" />
+        <activity android:name=".dashboard.help.RipOffMonitoringHelpActivity" />
     </application>
 </manifest>
