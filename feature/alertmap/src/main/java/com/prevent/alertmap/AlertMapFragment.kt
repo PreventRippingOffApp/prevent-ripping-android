@@ -15,8 +15,6 @@ import com.prevent.feature.record.domain.RecordService
 import com.prevent.feature.record.list.RecordListDialog
 import com.prevent.feature.setting.PreferenceActivity
 import com.prevent.util.VibrationService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
