@@ -8,7 +8,28 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:transitionName="container">
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/activity_location_log_tool_bar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/primaryColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:subtitleTextColor="@color/whiteColor">
+
+            <TextView
+                    android:id="@+id/activity_location_log_tool_bar_title_text_view"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="PREDICT LOCATION LOG"
+                    android:textColor="@color/whiteColor"
+                    android:transitionName="title_text" />
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/map"
@@ -17,7 +38,7 @@
                 android:layout_height="350dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/activity_location_log_tool_bar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

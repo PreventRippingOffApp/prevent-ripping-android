@@ -3,7 +3,9 @@ package com.prevent.feature.record.dashboard
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.fragment.app.FragmentActivity
 import com.google.android.gms.maps.SupportMapFragment
 import com.prevent.feature.record.R
@@ -12,6 +14,7 @@ import com.prevent.feature.record.list.RecordListDialog
 import com.prevent.feature.record.location.LocationLogActivity
 import com.prevent.feature.record.talk.list.TalkListDialog
 import kotlinx.android.synthetic.main.activity_record_dashboard.activity_record_dashboard_alert_with_mail_button
+import kotlinx.android.synthetic.main.activity_record_dashboard.activity_record_dashboard_card_view_title_text_view
 import kotlinx.android.synthetic.main.activity_record_dashboard.activity_record_dashboard_location_log_card_view
 import kotlinx.android.synthetic.main.activity_record_dashboard.activity_record_dashboard_rip_off_monitoring_help_image_view
 import kotlinx.android.synthetic.main.activity_record_dashboard.activity_record_dashboard_rip_off_records_material_text_button
@@ -81,8 +84,18 @@ class RecordDashboardActivity : FragmentActivity(R.layout.activity_record_dashbo
         val transitionOption = ActivityOptionsCompat
             .makeSceneTransitionAnimation(
                 this,
-                map.view!!,
-                "map"
+                Pair<View, String>(
+                    map.view!!,
+                    "map"
+                ),
+                Pair<View, String>(
+                    activity_record_dashboard_card_view_title_text_view,
+                    "title_text"
+                ),
+                Pair<View, String>(
+                    activity_record_dashboard_location_log_card_view,
+                    "container"
+                )
             )
 
         startActivity(
