@@ -21,7 +21,7 @@ jobs:
           root: .
           paths:
             - '*'
-  DebugBuild:
+  AssembleDemoDebug:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-29-node
@@ -32,12 +32,12 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: ./gradlew assembleDebug
+          command: ./gradlew assembleDemoDebug
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: app/build/reports
           destination: reports
 
-  DemoBuild:
+  AssembleDemoRelease:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-29-node
@@ -48,12 +48,12 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: ./gradlew bundleDemo assembleDemo
+          command: ./gradlew assembleDemoRelease
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: app/build/reports
           destination: reports
 
-  ProductionBuild:
+  AssembleProductionDebug:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-29-node
@@ -64,12 +64,12 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: ./gradlew bundleProduction assembleProduction
+          command: ./gradlew assembleProductionDebug
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: app/build/reports
           destination: reports
 
-  ReleaseBuild:
+  AssembleProductionRelease:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-29-node
@@ -80,7 +80,7 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: ./gradlew assembleRelease
+          command: ./gradlew assembleProductionRelease
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: app/build/reports
           destination: reports
@@ -121,16 +121,16 @@ workflows:
   main:
     jobs:
       - prepare_ci
-      - DebugBuild:
+      - AssembleDemoDebug:
           requires:
             - prepare_ci
-      - DemoBuild:
+      - AssembleDemoRelease:
           requires:
             - prepare_ci
-      - ProductionBuild:
+      - AssembleProductionDebug:
           requires:
             - prepare_ci
-      - ReleaseBuild:
+      - AssembleProductionRelease:
           requires:
             - prepare_ci
       - test:
