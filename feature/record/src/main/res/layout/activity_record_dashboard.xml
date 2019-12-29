@@ -76,6 +76,7 @@
                             android:layout_height="24dp"
                             android:background="?android:attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
+                            android:focusable="true"
                             android:src="@drawable/ic_help_24px"
                             android:tint="@color/primaryColor"
                             app:layout_constraintEnd_toEndOf="parent"
