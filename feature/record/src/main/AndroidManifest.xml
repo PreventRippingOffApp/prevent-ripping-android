@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.prevent.feature.record" >
+        package="com.prevent.feature.record">
 
     <application>
         <activity android:name=".dashboard.RecordDashboardActivity" />
+        <activity android:name=".location.LocationLogActivity" />
     </application>
 </manifest>
