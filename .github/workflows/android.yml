@@ -22,7 +22,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Gradle
-        run: ./gradlew assembleDemo
+        run: ./gradlew assembleDemoDebug
   build_production_debug:
     runs-on: ubuntu-latest
     steps:
@@ -32,7 +32,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Gradle
-        run: ./gradlew assembleProduction
+        run: ./gradlew assembleProductionDebug
   bundle_demo_debug:
     runs-on: ubuntu-latest
     steps:
@@ -42,7 +42,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Gradle
-        run: ./gradlew bundleDemo
+        run: ./gradlew bundleDemoDebug
 
   bundle_production_debug:
     runs-on: ubuntu-latest
@@ -53,7 +53,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Gradle
-        run: ./gradlew bundleProduction
+        run: ./gradlew bundleProductionDebug
 
   test:
     runs-on: ubuntu-latest
