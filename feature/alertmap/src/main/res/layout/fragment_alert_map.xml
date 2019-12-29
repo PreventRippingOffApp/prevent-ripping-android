@@ -73,11 +73,11 @@
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/fragment_alert_map_record_floating_action_button"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/primaryColor"
-                android:padding="12dp"
-                android:text="録音するボタン"
+                android:text="通報"
                 app:layout_anchor="@id/fragment_alert_map_bottom_app_bar" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
