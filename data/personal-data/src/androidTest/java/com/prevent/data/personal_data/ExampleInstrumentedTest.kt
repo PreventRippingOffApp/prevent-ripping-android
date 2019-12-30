@@ -1,4 +1,4 @@
-package com.prevent.feature.walkthrough
+package com.prevent.data.personal_data
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -17,6 +17,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.prevent.feature.walkthrough.test", appContext.packageName)
+        assertEquals("com.prevent.data.personal_data.test", appContext.packageName)
     }
 }

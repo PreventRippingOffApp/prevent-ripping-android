@@ -1,4 +1,4 @@
-package com.prevent.feature.alertmap_data.infra
+package com.prevent.util
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -17,9 +17,14 @@ inline fun <reified T : Any> getClassKey(): String {
     return T::class.qualifiedName ?: T::class.java.name
 }
 
+inline fun <reified T : Any> PreferenceContainer<T>.loadData(): T? {
+    val json = preference().getString(getClassKey<T>(), "")
+    return Gson().fromJson(json, object : TypeToken<T>() {}.type)
+}
+
 inline fun <reified T : Any> PreferenceContainer<T>.loadData(
-    default: T? = null
-): T? {
+    default: T
+): T {
     val json = preference().getString(getClassKey<T>(), "")
     return Gson().fromJson(json, object : TypeToken<T>() {}.type) ?: default
 }

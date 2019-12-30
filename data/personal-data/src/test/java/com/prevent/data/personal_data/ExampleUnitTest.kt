@@ -1,4 +1,4 @@
-package com.prevent.feature.walkthrough
+package com.prevent.data.personal_data
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
