@@ -13,7 +13,5 @@ class MonitoringDashboardActivity : FragmentActivity(R.layout.activity_monitorin
             this,
             R.layout.activity_monitoring_dashboard
         )
-
-
     }
 }
