@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewEntity"
+                type="com.prevent.feature.walkthrough.info.PersonalInfoValidationViewEntity" />
+    </data>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp">
+
+            <TextView
+                    android:id="@+id/fragment_walkthrough_register_personal_info_title_text_view"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:text="通報に必要な情報を登録"
+                    android:textColor="@color/primaryTextColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                    android:id="@+id/fragment_walkthrough_register_personal_info_description_text_view"
+                    style="@style/TextAppearance.AppCompat.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="警察へ通報するためには発信者の個人情報が必要です。¥n 登録しなければアプリの使用を続けることはできません。個人情報の用途についての詳細はプライバシーポリシーをご覧ください。"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_walkthrough_register_personal_info_title_text_view" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fragment_walkthrough_register_personal_info_first_name_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="苗字"
+                    app:errorEnabled="true"
+                    app:helperText="@{viewEntity.firstNameErrorMessage}"
+                    app:helperTextTextColor="@color/secondaryColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_walkthrough_register_personal_info_description_text_view">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fragment_walkthrough_register_personal_info_first_name_text_input_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fragment_walkthrough_register_personal_info_last_name_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="名前"
+                    app:errorEnabled="true"
+                    app:helperText="@{viewEntity.lastNameErrorMessage}"
+                    app:helperTextTextColor="@color/secondaryColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_walkthrough_register_personal_info_first_name_text_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fragment_walkthrough_register_personal_info_last_name_text_input_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fragment_walkthrough_register_personal_info_address_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="住所"
+                    app:errorEnabled="true"
+                    app:helperText="@{viewEntity.addressErrorMessage}"
+                    app:helperTextTextColor="@color/secondaryColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_walkthrough_register_personal_info_last_name_text_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fragment_walkthrough_register_personal_info_address_text_input_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/fragment_walkthrough_register_personal_info_save_material_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="56dp"
+                    android:background="@color/primaryColor"
+                    android:enabled="@{viewEntity.validate}"
+                    android:padding="18dp"
+                    android:text="保存"
+                    android:textSize="24sp"
+                    app:cornerRadius="25dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_walkthrough_register_personal_info_address_text_input_layout" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
