@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+apply plugin: 'com.github.gfx.ribbonizer'
 
 apply from: "$rootDir/base.gradle"
 apply from: "$rootDir/module_reference_feature.gradle"
@@ -9,5 +10,17 @@ apply from: "$rootDir/module_reference_base.gradle"
 android {
     defaultConfig {
         applicationId "com.prevent.ripping"
+    }
+}
+
+ribbonizer {
+    builder { variant, iconFile ->
+        if (variant.buildType.name == "debug") {
+            return yellowRibbonFilter(variant, iconFile)
+        } else if (variant.buildType.name == "release") {
+            return null
+        } else {
+            return greenRibbonFilter(variant, iconFile)
+        }
     }
 }

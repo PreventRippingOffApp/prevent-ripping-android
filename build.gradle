@@ -14,6 +14,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:9.0.0"
         classpath 'com.google.android.gms:oss-licenses-plugin:0.10.0'
+        classpath 'com.github.gfx.ribbonizer:ribbonizer-plugin:2.1.0'
     }
 }
 
