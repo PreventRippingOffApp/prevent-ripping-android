@@ -92,9 +92,8 @@ workflows:
       - AssembleDemo:
           requires:
             - prepare_ci
-      - AssembleDemo:
+      - AssembleProduction:
           requires:
-            - prepare_ci
             - prepare_ci
       - test:
           requires:
