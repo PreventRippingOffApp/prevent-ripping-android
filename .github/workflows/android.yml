@@ -42,7 +42,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Gradle
-        run: ./gradlew bundleDemoDebug
+        run: ./gradlew bundleDemo
 
   bundle_production:
     runs-on: ubuntu-latest
