@@ -89,17 +89,12 @@ workflows:
   main:
     jobs:
       - prepare_ci
-      - AssembleDemoDebug:
+      - AssembleDemo:
           requires:
             - prepare_ci
-      - AssembleDemoRelease:
+      - AssembleDemo:
           requires:
             - prepare_ci
-      - AssembleProductionDebug:
-          requires:
-            - prepare_ci
-      - AssembleProductionRelease:
-          requires:
             - prepare_ci
       - test:
           requires:
