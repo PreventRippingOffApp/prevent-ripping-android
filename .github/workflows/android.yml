@@ -13,7 +13,7 @@ jobs:
           java-version: 1.8
       - name: Build with Gradle
         run: ./gradlew build
-  assemble_demo_debug:
+  assemble_demo:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -22,8 +22,8 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Gradle
-        run: ./gradlew assembleDemoDebug
-  asssemble_production_debug:
+        run: ./gradlew assembleDemo
+  asssemble_production:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -32,8 +32,8 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Gradle
-        run: ./gradlew assembleProductionDebug
-  assemble_demo_release:
+        run: ./gradlew assembleProduction
+  bundle_demo:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -42,29 +42,9 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Gradle
-        run: ./gradlew assembleDemoRelease
-  asssemble_production_release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-      - name: Build with Gradle
-        run: ./gradlew assembleProductionRelease
-  bundle_demo_debug:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-      - name: Build with Gradle
-        run: ./gradlew bundleDemoDebug
+        run: ./gradlew bundleDemo
 
-  bundle_production_debug:
+  bundle_production:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -73,29 +53,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Gradle
-        run: ./gradlew bundleProductionDebug
-  bundle_demo_release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-      - name: Build with Gradle
-        run: ./gradlew bundleDemoRelease
-
-  bundle_production_release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-      - name: Build with Gradle
-        run: ./gradlew bundleProductionRelease
-
+        run: ./gradlew bundleProduction
   test:
     runs-on: ubuntu-latest
     steps:
