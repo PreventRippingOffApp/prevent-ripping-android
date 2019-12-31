@@ -18,7 +18,6 @@ internal class RecordListAdapter(
                 newItem: RecordLogViewEntity
             ): Boolean {
                 return oldItem.id == newItem.id
-
             }
 
             override fun areContentsTheSame(
@@ -38,6 +37,6 @@ internal class RecordListAdapter(
     }
 
     override fun onBindViewHolder(holder: RecordListViewHolder, position: Int) {
-     return holder.bindTo(getItem(position))
+        return holder.bindTo(getItem(position))
     }
 }

@@ -4,7 +4,6 @@ import com.prevent.alertmap_data.feature.domain.AlertLevelReadonlyRepository
 import com.prevent.alertmap_data.feature.entity.AlertLevelEntity
 import com.prevent.alertmap_data.feature.entity.LocationEntity
 
-
 internal class AlertLevelReadonlyRepositoryImpl(
     private val alertLevelPreference: AlertLevelPreference
 ) :

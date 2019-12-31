@@ -48,7 +48,6 @@ class AlertMapFragment : Fragment() {
                 true
             )
 
-
         viewModel
             .currentLocationLiveData
             .observeForever {
