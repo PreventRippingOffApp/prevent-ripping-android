@@ -21,7 +21,7 @@ jobs:
           root: .
           paths:
             - '*'
-  AssembleDemoDebug:
+  AssembleDemo:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-29-node
@@ -32,12 +32,12 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: ./gradlew assembleDemoDebug
+          command: ./gradlew assembleDemo
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: app/build/reports
           destination: reports
 
-  AssembleDemoRelease:
+  AssembleProduction:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-29-node
@@ -48,39 +48,7 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: ./gradlew assembleDemoRelease
-      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: app/build/reports
-          destination: reports
-
-  AssembleProductionDebug:
-    working_directory: ~/code
-    docker:
-      - image: circleci/android:api-29-node
-    environment:
-      JVM_OPTS: -Xmx3200m
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: Run Build
-          command: ./gradlew assembleProductionDebug
-      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: app/build/reports
-          destination: reports
-
-  AssembleProductionRelease:
-    working_directory: ~/code
-    docker:
-      - image: circleci/android:api-29-node
-    environment:
-      JVM_OPTS: -Xmx3200m
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: Run Build
-          command: ./gradlew assembleProductionRelease
+          command: ./gradlew assembleProduction
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: app/build/reports
           destination: reports
@@ -121,21 +89,15 @@ workflows:
   main:
     jobs:
       - prepare_ci
-      - AssembleDemoDebug:
+      - AssembleDemo:
           requires:
             - prepare_ci
-      - AssembleDemoRelease:
-          requires:
-            - prepare_ci
-      - AssembleProductionDebug:
-          requires:
-            - prepare_ci
-      - AssembleProductionRelease:
+      - AssembleProduction:
           requires:
             - prepare_ci
       - test:
           requires:
-            - AssembleDemoDebug
+            - AssembleDemo
       - lint:
           requires:
-            - AssembleDemoDebug
+            - AssembleDemo
