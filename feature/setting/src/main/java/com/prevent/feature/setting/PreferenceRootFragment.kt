@@ -68,6 +68,7 @@ class PreferenceRootFragment : PreferenceFragmentCompat() {
                     Intent(
                         context,
                         OssLicensesMenuActivity::class.java
+
                     )
                 )
                 true
