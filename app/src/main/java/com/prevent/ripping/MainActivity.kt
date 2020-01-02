@@ -11,11 +11,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val intent = Intent(
+            applicationContext,
+            WalkThroughActivity::class.java
+        )
+
+        finish()
+
         startActivity(
-            Intent(
-                applicationContext,
-                WalkThroughActivity::class.java
-            )
+            intent
         )
     }
 }
