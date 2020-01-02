@@ -15,6 +15,7 @@ import com.prevent.feature.record.domain.RecordService
 import com.prevent.feature.record.domain.RecordStatus
 import com.prevent.feature.record.list.RecordListDialog
 import com.prevent.feature.setting.PreferenceActivity
+import com.prevent.util.VibrationService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -27,6 +28,7 @@ class AlertMapFragment : Fragment() {
     private lateinit var binding: FragmentAlertMapBinding
 
     private val recordService: RecordService by inject()
+    private val vibrationService: VibrationService by inject()
 
     private val mapService: MapService by inject(parameters = {
         parametersOf(
@@ -93,6 +95,7 @@ class AlertMapFragment : Fragment() {
         binding
             .fragmentAlertMapSettingImageView
             .setOnClickListener {
+                vibrationService.playVibration()
                 startActivity(
                     Intent(
                         requireContext(),
@@ -103,6 +106,7 @@ class AlertMapFragment : Fragment() {
 
         binding.fragmentAlertMapRecordLogImageView
             .setOnClickListener {
+                vibrationService.playVibration()
                 val dialog = RecordListDialog()
                 dialog.showNow(parentFragmentManager, "tag")
             }
