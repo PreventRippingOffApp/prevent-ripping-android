@@ -123,7 +123,6 @@ class PreferenceRootFragment : PreferenceFragmentCompat() {
                         Preference(context)
                     }
                 }
-
             }
 
             flags::class
