@@ -6,9 +6,7 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
 val infraModule = module {
-    factory { AlertLevelPreference(androidApplication()) }
-
     // Repository
-    factory { AlertLevelReadonlyRepositoryImpl(get()) as AlertLevelReadonlyRepository }
-    factory { AlertLevelRepositoryImpl(get()) as AlertLevelRepository }
+    factory { AlertLevelRepositoryImpl(androidApplication()) as AlertLevelReadonlyRepository }
+    factory { AlertLevelRepositoryImpl(androidApplication()) as AlertLevelRepository }
 }

@@ -2,6 +2,7 @@ package com.prevent.ripping
 
 import android.app.Application
 import com.prevent.alertmap.alertMapModule
+import com.prevent.data.flags.flagsModule
 import com.prevent.data.personal_data.personalDataModule
 import com.prevent.data.recorddata.recordDataModule
 import com.prevent.feature.alertmap_data.alertMapDataModule
@@ -12,6 +13,8 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 class MainApplication : Application() {
+
+
     override fun onCreate() {
         super.onCreate()
 
@@ -19,6 +22,7 @@ class MainApplication : Application() {
             alertMapModule,
             recordModule,
             recordDataModule,
+            flagsModule,
             utilModule,
             walkthroughModule,
             personalDataModule
@@ -28,5 +32,6 @@ class MainApplication : Application() {
             androidContext(this@MainApplication)
             modules(modules)
         }
+
     }
 }

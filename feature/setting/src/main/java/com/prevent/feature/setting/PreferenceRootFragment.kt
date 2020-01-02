@@ -1,5 +1,6 @@
 package com.prevent.feature.setting
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -7,18 +8,25 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SeekBarPreference
+import androidx.preference.SwitchPreference
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.prevent.alertmap_data.feature.domain.AlertLevelReadonlyRepository
 import com.prevent.alertmap_data.feature.domain.AlertLevelRepository
 import com.prevent.alertmap_data.feature.entity.AlertLevelEntity
 import com.prevent.alertmap_data.feature.entity.LocationEntity
 import com.prevent.alertmap_data.feature.entity.valueobject.AlertlevelValueObject
+import com.prevent.data.flags.Flags
 import org.koin.android.ext.android.inject
+import kotlin.reflect.KClass
+import kotlin.reflect.KMutableProperty
+import kotlin.reflect.KProperty1
+import kotlin.reflect.full.memberProperties
 
 class PreferenceRootFragment : PreferenceFragmentCompat() {
 
     private val alertLevelRepository: AlertLevelRepository by inject()
     private val alertlevelReadonlyRepository: AlertLevelReadonlyRepository by inject()
+    private val flags: Flags by inject()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.main_preference, rootKey)
@@ -83,6 +91,45 @@ class PreferenceRootFragment : PreferenceFragmentCompat() {
                 .also { preferenceScreen.addPreference(it) }
                 .apply {
                     title = "デバッグ設定"
+                }
+
+            fun <T : Any> KClass<T>.toMemberProperties(): List<KProperty1<Flags, Any>> =
+                this.memberProperties.map { it as KProperty1<Flags, Any> }
+
+            fun <R> KProperty1<Flags, R>.toPreference(
+                context: Context
+            ): Preference {
+                val value = this.get(flags)
+                val name = this.name
+                return when (value) {
+                    is Boolean -> {
+                        SwitchPreference(context)
+                            .apply {
+                                title = name
+                                isChecked = value
+                                setOnPreferenceClickListener {
+                                    val property =
+                                        flags::class.toMemberProperties().first { it.name == name }
+
+                                    if (property is KMutableProperty<*>) {
+                                        property.setter.call(flags, this.isChecked)
+                                    }
+
+                                    true
+                                }
+                            }
+                    }
+                    else -> {
+                        Preference(context)
+                    }
+                }
+
+            }
+
+            flags::class
+                .toMemberProperties()
+                .forEach {
+                    debugSettingCategory.addPreference(it.toPreference(preferenceScreen.context))
                 }
 
             val alertLevelPreference = SeekBarPreference(preferenceScreen.context)
