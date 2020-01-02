@@ -8,16 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.prevent.alertmap.databinding.FragmentAlertMapBinding
 import com.prevent.alertmap.service.MapService
+import com.prevent.feature.record.dashboard.RecordDashboardActivity
 import com.prevent.feature.record.domain.RecordService
-import com.prevent.feature.record.domain.RecordStatus
 import com.prevent.feature.record.list.RecordListDialog
 import com.prevent.feature.setting.PreferenceActivity
 import com.prevent.util.VibrationService
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.launc
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -79,17 +78,24 @@ class AlertMapFragment : Fragment() {
         binding
             .fragmentAlertMapRecordFloatingActionButton
             .setOnClickListener {
-                this.lifecycleScope.launch {
-                    val recordStatus = recordService.recordStatus
-                    try {
-                        when (recordStatus) {
-                            is RecordStatus.NotRecording -> recordService.startRecord()
-                            is RecordStatus.Recording -> recordService.stopRecord()
-                        }
-                    } finally {
-                        refreshRecordButtonText()
-                    }
-                }
+                //                this.lifecycleScope.launch {
+//                    val recordStatus = recordService.recordStatus
+//                    try {
+//                        when (recordStatus) {
+//                            is RecordStatus.NotRecording -> recordService.startRecord()
+//                            is RecordStatus.Recording -> recordService.stopRecord()
+//                        }
+//                    } finally {
+//                        refreshRecordButtonText()
+//                    }
+//                }
+
+                startActivity(
+                    Intent(
+                        context,
+                        RecordDashboardActivity::class.java
+                    )
+                )
             }
 
         binding
@@ -120,15 +126,15 @@ class AlertMapFragment : Fragment() {
         viewModel.refreshAlertLevel()
     }
 
-    private fun refreshRecordButtonText() {
-        this.lifecycleScope.launch(Dispatchers.Main) {
-            launch(Dispatchers.Main) {
-                binding.fragmentAlertMapRecordFloatingActionButton.text =
-                    when (recordService.recordStatus) {
-                        is RecordStatus.Recording -> "録音中"
-                        is RecordStatus.NotRecording -> "録音する"
-                    }
-            }
-        }
-    }
+//    private fun refreshRecordButtonText() {
+//        this.lifecycleScope.launch(Dispatchers.Main) {
+//            launch(Dispatchers.Main) {
+//                binding.fragmentAlertMapRecordFloatingActionButton.text =
+//                    when (recordService.recordStatus) {
+//                        is RecordStatus.Recording -> "録音中"
+//                        is RecordStatus.NotRecording -> "録音する"
+//                    }
+//            }
+//        }
+//    }
 }

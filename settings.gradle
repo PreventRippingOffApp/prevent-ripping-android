@@ -1,4 +1,4 @@
-include ':app', ':resource', ':ddd', ':util'
+include ':app', ':resource', ':ddd', ':util', ':personal-data'
 
 ["feature", "data"]
         .asList()
