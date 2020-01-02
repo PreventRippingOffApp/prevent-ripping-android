@@ -16,11 +16,11 @@ import com.prevent.alertmap_data.feature.entity.AlertLevelEntity
 import com.prevent.alertmap_data.feature.entity.LocationEntity
 import com.prevent.alertmap_data.feature.entity.valueobject.AlertlevelValueObject
 import com.prevent.data.flags.Flags
-import org.koin.android.ext.android.inject
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.KProperty1
 import kotlin.reflect.full.memberProperties
+import org.koin.android.ext.android.inject
 
 class PreferenceRootFragment : PreferenceFragmentCompat() {
 
