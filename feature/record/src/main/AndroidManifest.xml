@@ -1,2 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.prevent.feature.record" />
+        package="com.prevent.feature.record">
+
+    <application>
+        <activity android:name=".dashboard.RecordDashboardActivity" />
+        <activity android:name=".location.LocationLogActivity" />
+        <activity android:name=".dashboard.help.RipOffMonitoringHelpActivity" />
+        <activity android:name=".dashboard.monitoring.MonitoringDashboardActivity" />
+    </application>
+</manifest>
