@@ -11,13 +11,42 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Permission Checking Now."
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="background image of police"
+                android:scaleType="centerCrop"
+                android:src="@drawable/welcome_background_image"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/activity_permission_title_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/primaryColor"
+                android:padding="16dp"
+                android:text="Welcome to ぼったくりガード"
+                android:textColor="@color/whiteColor"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Now loading..."
+                android:textColor="@color/whiteColor"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_permission_title_text_view" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
