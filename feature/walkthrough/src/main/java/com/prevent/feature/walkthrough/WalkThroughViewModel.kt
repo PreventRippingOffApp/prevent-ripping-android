@@ -16,7 +16,7 @@ internal class WalkThroughViewModel : ViewModel() {
     ) {
         _walkThroughLiveData.postValue(
             WalkthroughViewEntity(
-                100 / walkThroughPagerAdapter.itemCount * position
+                100 / walkThroughPagerAdapter.itemCount * (position + 1)
             )
         )
     }
