@@ -76,18 +76,6 @@ class AlertMapFragment : Fragment() {
         binding
             .fragmentAlertMapRecordFloatingActionButton
             .setOnClickListener {
-                //                this.lifecycleScope.launch {
-//                    val recordStatus = recordService.recordStatus
-//                    try {
-//                        when (recordStatus) {
-//                            is RecordStatus.NotRecording -> recordService.startRecord()
-//                            is RecordStatus.Recording -> recordService.stopRecord()
-//                        }
-//                    } finally {
-//                        refreshRecordButtonText()
-//                    }
-//                }
-
                 startActivity(
                     Intent(
                         context,
@@ -123,16 +111,4 @@ class AlertMapFragment : Fragment() {
 
         viewModel.refreshAlertLevel()
     }
-
-//    private fun refreshRecordButtonText() {
-//        this.lifecycleScope.launch(Dispatchers.Main) {
-//            launch(Dispatchers.Main) {
-//                binding.fragmentAlertMapRecordFloatingActionButton.text =
-//                    when (recordService.recordStatus) {
-//                        is RecordStatus.Recording -> "録音中"
-//                        is RecordStatus.NotRecording -> "録音する"
-//                    }
-//            }
-//        }
-//    }
 }
