@@ -1,14 +1,17 @@
 package com.prevent.feature.walkthrough
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.prevent.feature.walkthrough.databinding.ActivityWalkthroughBinding
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WalkThroughActivity : FragmentActivity(R.layout.activity_walkthrough) {
 
+    private val walkthroughNavigator: WalkthroughNavigator by inject()
     private val walkThroughViewModel: WalkThroughViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +38,14 @@ class WalkThroughActivity : FragmentActivity(R.layout.activity_walkthrough) {
                 binding.activityWalkthroughViewPager2.isUserInputEnabled = position != 1
             }
         })
+        binding.activityWalkthroughFinishButton.setOnClickListener {
+            val mainScreen = walkthroughNavigator.getMainScreen()
+            val intent = Intent(applicationContext, mainScreen.javaClass)
+            startActivity(
+                intent
+            )
+        }
+
         walkThroughViewModel.pageChanged(
             pageradapter,
             0

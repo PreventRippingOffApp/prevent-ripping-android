@@ -7,6 +7,7 @@ import com.prevent.data.recorddata.recordDataModule
 import com.prevent.feature.alertmap_data.alertMapDataModule
 import com.prevent.feature.record.recordModule
 import com.prevent.feature.walkthrough.walkthroughModule
+import com.prevent.ripping.navigator.navigatorModule
 import com.prevent.util.utilModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -21,7 +22,8 @@ class MainApplication : Application() {
             recordDataModule,
             utilModule,
             walkthroughModule,
-            personalDataModule
+            personalDataModule,
+            navigatorModule
         ) + alertMapDataModule
 
         startKoin {
