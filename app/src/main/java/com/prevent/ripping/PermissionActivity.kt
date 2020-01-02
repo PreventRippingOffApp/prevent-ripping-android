@@ -35,8 +35,10 @@ class PermissionActivity : AppCompatActivity(R.layout.activity_permission) {
         Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
     fun moveNowLocation() {
+        val intent = Intent(this, MainActivity::class.java)
+        finish()
         startActivity(
-            Intent(this, MainActivity::class.java)
+            intent
         )
     }
 
