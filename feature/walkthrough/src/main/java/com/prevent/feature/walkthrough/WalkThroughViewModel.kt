@@ -21,3 +21,4 @@ internal class WalkThroughViewModel : ViewModel() {
         )
     }
 }
+
