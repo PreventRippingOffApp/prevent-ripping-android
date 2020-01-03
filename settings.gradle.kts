@@ -1,6 +1,5 @@
 include(":app")
 
-
 listOf("feature", "data", "core")
     .forEach { folderName ->
         file(folderName)
@@ -9,7 +8,6 @@ listOf("feature", "data", "core")
                 project(":${file.name}").projectDir = file
                 true
             }
-
     }
 
 rootProject.name = "prevent Ripping"
