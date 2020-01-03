@@ -16,11 +16,11 @@ import com.prevent.alertmap_data.feature.entity.AlertLevelEntity
 import com.prevent.alertmap_data.feature.entity.LocationEntity
 import com.prevent.alertmap_data.feature.entity.valueobject.AlertlevelValueObject
 import com.prevent.data.flags.Flags
+import org.koin.android.ext.android.inject
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.KProperty1
 import kotlin.reflect.full.memberProperties
-import org.koin.android.ext.android.inject
 
 class PreferenceRootFragment : PreferenceFragmentCompat() {
 
@@ -94,7 +94,7 @@ class PreferenceRootFragment : PreferenceFragmentCompat() {
                 }
 
             fun <T : Any> KClass<T>.toMemberProperties(): List<KProperty1<Flags, Any>> =
-                this.memberProperties.map { it as KProperty1<Flags, Any> }
+                this.memberProperties.filter { it is KProperty1<*, *> }.map { it as KProperty1<Flags, Any> }
 
             fun <R> KProperty1<Flags, R>.toPreference(
                 context: Context
