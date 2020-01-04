@@ -1,6 +1,0 @@
-dependencies {
-    implementation project(path: ':recorddata')
-    implementation project(path: ':alertmap-data')
-    implementation project(path: ':personal-data')
-    implementation project(path: ':flags')
-}

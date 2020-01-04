@@ -94,7 +94,7 @@ class PreferenceRootFragment : PreferenceFragmentCompat() {
                 }
 
             fun <T : Any> KClass<T>.toMemberProperties(): List<KProperty1<Flags, Any>> =
-                this.memberProperties.map { it as KProperty1<Flags, Any> }
+                this.memberProperties.filter { it is KProperty1<*, *> }.map { it as KProperty1<Flags, Any> }
 
             fun <R> KProperty1<Flags, R>.toPreference(
                 context: Context

@@ -2,7 +2,6 @@ package com.prevent.alertmap
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.prevent.alertmap.databinding.FragmentAlertMapBinding
 import com.prevent.alertmap.service.MapService
-import com.prevent.feature.record.dashboard.RecordDashboardActivity
-import com.prevent.feature.record.domain.RecordService
-import com.prevent.feature.record.list.RecordListDialog
-import com.prevent.feature.setting.PreferenceActivity
 import com.prevent.util.VibrationService
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -23,9 +18,8 @@ class AlertMapFragment : Fragment() {
 
     private val viewModel: AlertMapViewModel by viewModel()
     private lateinit var binding: FragmentAlertMapBinding
-
-    private val recordService: RecordService by inject()
     private val vibrationService: VibrationService by inject()
+    private val alertmapNavigator: AlertmapNavigator by inject(parameters = { parametersOf(context) })
 
     private val mapService: MapService by inject(parameters = {
         parametersOf(
@@ -76,31 +70,20 @@ class AlertMapFragment : Fragment() {
         binding
             .fragmentAlertMapRecordFloatingActionButton
             .setOnClickListener {
-                startActivity(
-                    Intent(
-                        context,
-                        RecordDashboardActivity::class.java
-                    )
-                )
+                alertmapNavigator.navigateAlertScreen()
             }
 
         binding
             .fragmentAlertMapSettingImageView
             .setOnClickListener {
                 vibrationService.playVibration()
-                startActivity(
-                    Intent(
-                        requireContext(),
-                        PreferenceActivity::class.java
-                    )
-                )
+                alertmapNavigator.naviatePreferenceScreen()
             }
 
         binding.fragmentAlertMapRecordLogImageView
             .setOnClickListener {
                 vibrationService.playVibration()
-                val dialog = RecordListDialog()
-                dialog.showNow(parentFragmentManager, "tag")
+                alertmapNavigator.showRecordLogDialog(parentFragmentManager)
             }
 
         return binding.root

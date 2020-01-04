@@ -1,0 +1,13 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+
+apply from: "$rootDir/gradle/base.gradle"
+apply from: "$rootDir/gradle/module_reference_feature.gradle"
+apply from: "$rootDir/gradle/module_reference_data.gradle"
+apply from: "$rootDir/gradle/module_reference_base.gradle"
+
+android {
+    defaultConfig {
+        applicationId "com.prevent.ripping"
+    }
+}
