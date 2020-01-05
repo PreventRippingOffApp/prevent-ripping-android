@@ -21,11 +21,13 @@ import kotlin.reflect.KMutableProperty
 import kotlin.reflect.KProperty1
 import kotlin.reflect.full.memberProperties
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PreferenceRootFragment : PreferenceFragmentCompat() {
 
     private val alertLevelRepository: AlertLevelRepository by inject()
     private val alertlevelReadonlyRepository: AlertLevelReadonlyRepository by inject()
+    private val preferenceRootFragmentViewModel: PreferenceRootFragmentViewModel by viewModel()
     private val flags: Flags by inject()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -62,6 +64,23 @@ class PreferenceRootFragment : PreferenceFragmentCompat() {
         }
 
         preferenceCategory.addPreference(preference2)
+
+        val aboutDeveloperCategory = PreferenceCategory(preferenceScreen.context)
+            .apply {
+                title = "開発者について"
+            }
+        preferenceScreen.addPreference(aboutDeveloperCategory)
+
+        val aboutDeveloperPreference = Preference(
+            preferenceScreen.context
+        ).apply {
+            title = "開発者について"
+            setOnPreferenceClickListener {
+                preferenceRootFragmentViewModel.showAboutDeveloperScreen()
+                true
+            }
+        }
+        aboutDeveloperCategory.addPreference(aboutDeveloperPreference)
 
         val licensePreferenceCategory = PreferenceCategory(preferenceScreen.context)
             .also { preferenceScreen.addPreference(it) }
