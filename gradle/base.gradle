@@ -119,4 +119,8 @@ dependencies {
 
     // OSS License
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
+
+    // ChromeCustomTabs
+    implementation "androidx.browser:browser:1.2.0"
 }
+
