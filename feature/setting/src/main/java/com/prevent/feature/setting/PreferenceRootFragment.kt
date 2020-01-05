@@ -3,7 +3,6 @@ package com.prevent.feature.setting
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
@@ -16,11 +15,11 @@ import com.prevent.alertmap_data.feature.entity.AlertLevelEntity
 import com.prevent.alertmap_data.feature.entity.LocationEntity
 import com.prevent.alertmap_data.feature.entity.valueobject.AlertlevelValueObject
 import com.prevent.data.flags.Flags
+import org.koin.android.ext.android.inject
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.KProperty1
 import kotlin.reflect.full.memberProperties
-import org.koin.android.ext.android.inject
 
 class PreferenceRootFragment : PreferenceFragmentCompat() {
 
@@ -30,38 +29,6 @@ class PreferenceRootFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.main_preference, rootKey)
-
-        val preferenceCategory = PreferenceCategory(
-            preferenceScreen.context
-        ).apply {
-            title = "カテゴリーネーム"
-        }
-
-        preferenceScreen.addPreference(preferenceCategory)
-
-        val preference = Preference(
-            preferenceScreen.context
-        ).apply {
-            title = "Title"
-            setOnPreferenceClickListener {
-                Toast.makeText(requireContext(), "title1", Toast.LENGTH_SHORT).show()
-                true
-            }
-        }
-
-        preferenceCategory.addPreference(preference)
-
-        val preference2 = Preference(
-            preferenceScreen.context
-        ).apply {
-            title = "Title"
-            setOnPreferenceClickListener {
-                Toast.makeText(requireContext(), "title2", Toast.LENGTH_SHORT).show()
-                true
-            }
-        }
-
-        preferenceCategory.addPreference(preference2)
 
         val licensePreferenceCategory = PreferenceCategory(preferenceScreen.context)
             .also { preferenceScreen.addPreference(it) }
