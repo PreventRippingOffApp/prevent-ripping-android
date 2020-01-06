@@ -7,6 +7,7 @@ import com.prevent.data.personal_data.personalDataModule
 import com.prevent.data.recorddata.recordDataModule
 import com.prevent.feature.alertmap_data.alertMapDataModule
 import com.prevent.feature.record.recordModule
+import com.prevent.feature.setting.settingModule
 import com.prevent.feature.walkthrough.walkthroughModule
 import com.prevent.ripping.navigator.navigatorModule
 import com.prevent.util.utilModule
@@ -26,7 +27,8 @@ class MainApplication : Application() {
             utilModule,
             walkthroughModule,
             personalDataModule,
-            navigatorModule
+            navigatorModule,
+            settingModule
         ) + alertMapDataModule
 
         startKoin {

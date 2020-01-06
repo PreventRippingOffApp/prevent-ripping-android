@@ -20,16 +20,67 @@ import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.KProperty1
 import kotlin.reflect.full.memberProperties
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PreferenceRootFragment : PreferenceFragmentCompat() {
 
     private val alertLevelRepository: AlertLevelRepository by inject()
     private val alertlevelReadonlyRepository: AlertLevelReadonlyRepository by inject()
+    private val preferenceRootFragmentViewModel: PreferenceRootFragmentViewModel by viewModel()
     private val flags: Flags by inject()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.main_preference, rootKey)
 
+        val preferenceCategory = PreferenceCategory(
+            preferenceScreen.context
+        ).apply {
+            title = "カテゴリーネーム"
+        }
+
+        preferenceScreen.addPreference(preferenceCategory)
+
+        val preference = Preference(
+            preferenceScreen.context
+        ).apply {
+            title = "Title"
+            setOnPreferenceClickListener {
+                Toast.makeText(requireContext(), "title1", Toast.LENGTH_SHORT).show()
+                true
+            }
+        }
+
+        preferenceCategory.addPreference(preference)
+
+        val preference2 = Preference(
+            preferenceScreen.context
+        ).apply {
+            title = "Title"
+            setOnPreferenceClickListener {
+                Toast.makeText(requireContext(), "title2", Toast.LENGTH_SHORT).show()
+                true
+            }
+        }
+
+        preferenceCategory.addPreference(preference2)
+
+        val aboutDeveloperCategory = PreferenceCategory(preferenceScreen.context)
+            .apply {
+                title = "開発者について"
+            }
+        preferenceScreen.addPreference(aboutDeveloperCategory)
+
+        val aboutDeveloperPreference = Preference(
+            preferenceScreen.context
+        ).apply {
+            title = "開発者について"
+            setOnPreferenceClickListener {
+                preferenceRootFragmentViewModel.showAboutDeveloperScreen()
+                true
+            }
+        }
+        aboutDeveloperCategory.addPreference(aboutDeveloperPreference)
         val licensePreferenceCategory = PreferenceCategory(preferenceScreen.context)
             .also { preferenceScreen.addPreference(it) }
             .apply {
