@@ -32,38 +32,6 @@ class PreferenceRootFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.main_preference, rootKey)
 
-        val preferenceCategory = PreferenceCategory(
-            preferenceScreen.context
-        ).apply {
-            title = "カテゴリーネーム"
-        }
-
-        preferenceScreen.addPreference(preferenceCategory)
-
-        val preference = Preference(
-            preferenceScreen.context
-        ).apply {
-            title = "Title"
-            setOnPreferenceClickListener {
-                Toast.makeText(requireContext(), "title1", Toast.LENGTH_SHORT).show()
-                true
-            }
-        }
-
-        preferenceCategory.addPreference(preference)
-
-        val preference2 = Preference(
-            preferenceScreen.context
-        ).apply {
-            title = "Title"
-            setOnPreferenceClickListener {
-                Toast.makeText(requireContext(), "title2", Toast.LENGTH_SHORT).show()
-                true
-            }
-        }
-
-        preferenceCategory.addPreference(preference2)
-
         val aboutDeveloperCategory = PreferenceCategory(preferenceScreen.context)
             .apply {
                 title = "開発者について"
