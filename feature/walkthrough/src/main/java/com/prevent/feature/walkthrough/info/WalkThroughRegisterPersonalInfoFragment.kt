@@ -60,6 +60,12 @@ internal class WalkThroughRegisterPersonalInfoFragment(
                 nextPage()
             }
 
+        binding
+            .fragmentWalkthroughRegisterPersonalInfoRegisterWithOutInfoButton
+            .setOnClickListener {
+                nextPage()
+            }
+
         return binding.root
     }
 }
