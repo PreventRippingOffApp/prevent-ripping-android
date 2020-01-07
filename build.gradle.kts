@@ -11,6 +11,7 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.61")
         classpath("org.jlleitschuh.gradle:ktlint-gradle:9.0.0")
         classpath("com.google.android.gms:oss-licenses-plugin:0.10.0")
+        classpath("com.vanniktech:gradle-dependency-graph-generator-plugin:0.4.0")
     }
 }
 
@@ -27,16 +28,7 @@ task("clean", Delete::class) {
 
 apply {
     plugin("org.jlleitschuh.gradle.ktlint")
-}
-
-ext {
-    set("app_gradle", appGradle)
-    set("data_gradle", dataGradle)
-    set("feature_gradle", featureGradle)
-    set("core_gradle", coreGradle)
-    set("module_reference_base", moduleReferenceBase)
-    set("module_reference_data", moduleReferenceData)
-    set("module_reference_feature", moduleReferenceFeature)
+    plugin("com.vanniktech.dependency.graph.generator")
 }
 
 val baseLocation = "$rootDir/gradle"
