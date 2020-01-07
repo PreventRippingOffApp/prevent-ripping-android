@@ -12,7 +12,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 internal class WalkThroughRegisterPersonalInfoFragment(
     private val nextPage: (() -> Unit)
 ) : Fragment() {
-
     val walkThroughRegisterPersonalInfoViewModel: WalkThroughRegisterPersonalInfoViewModel by viewModel()
 
     override fun onCreateView(
