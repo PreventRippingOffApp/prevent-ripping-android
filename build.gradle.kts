@@ -12,6 +12,8 @@ buildscript {
         classpath("org.jlleitschuh.gradle:ktlint-gradle:9.0.0")
         classpath("com.google.android.gms:oss-licenses-plugin:0.10.0")
         classpath("com.vanniktech:gradle-dependency-graph-generator-plugin:0.4.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.61")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:1.3.61")
     }
 }
 

@@ -22,6 +22,9 @@ internal class PersonalInfoRepositoryImpl(
     }
 
     override fun loadPersonalInfo(): PersonalDataEntity {
-        return personalDataPreference.loadData(PersonalDataEntity.default())
+        return personalDataPreference.loadDataBySerializer(
+            PersonalDataEntity.serializer(),
+            PersonalDataEntity.default()
+        )
     }
 }

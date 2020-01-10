@@ -3,6 +3,8 @@ package com.prevent.feature.setting
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
+import android.widget.Toast
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
@@ -15,6 +17,8 @@ import com.prevent.alertmap_data.feature.entity.AlertLevelEntity
 import com.prevent.alertmap_data.feature.entity.LocationEntity
 import com.prevent.alertmap_data.feature.entity.valueobject.AlertlevelValueObject
 import com.prevent.data.flags.Flags
+import com.prevent.feature.setting.personalinfo.PersonalInfoEditDialog
+import com.prevent.feature.setting.state.PersonalInfoEditAuthState
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.KProperty1
@@ -29,8 +33,31 @@ class PreferenceRootFragment : PreferenceFragmentCompat() {
     private val preferenceRootFragmentViewModel: PreferenceRootFragmentViewModel by viewModel()
     private val flags: Flags by inject()
 
+    private val fragmentInstance = this
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.main_preference, rootKey)
+
+        val PersonalInfoPreferenceCategory = PreferenceCategory(
+            preferenceScreen.context
+        ).apply {
+            title = "個人情報について"
+        }
+
+        preferenceScreen.addPreference(PersonalInfoPreferenceCategory)
+
+        val personalInfoPreference = Preference(
+            preferenceScreen.context
+        ).apply {
+            title = "個人情報を編集する"
+            setOnPreferenceClickListener {
+                preferenceRootFragmentViewModel
+                    .showPersonalInfoScreen(fragmentInstance)
+                true
+            }
+        }
+
+        PersonalInfoPreferenceCategory.addPreference(personalInfoPreference)
 
         val aboutDeveloperCategory = PreferenceCategory(preferenceScreen.context)
             .apply {
@@ -141,6 +168,25 @@ class PreferenceRootFragment : PreferenceFragmentCompat() {
                     }
                 }
             debugSettingCategory.addPreference(alertLevelPreference)
+
+            preferenceRootFragmentViewModel
+                .personalInfoEditAuthLiveData
+                .observeForever {
+                    when (it) {
+                        PersonalInfoEditAuthState.success -> {
+                            val dialog = PersonalInfoEditDialog()
+                            requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+                            dialog.showNow(parentFragmentManager, "")
+                        }
+                        is PersonalInfoEditAuthState.failed -> {
+                            Toast.makeText(
+                                context,
+                                it.message,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
         }
     }
 }

@@ -1,5 +1,8 @@
 package com.prevent.data.personal_data.entity
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class PersonalDataEntity(
     val id: Int,
     val name: NameValueObject,
