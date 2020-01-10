@@ -1,6 +1,6 @@
 package com.prevent.feature.walkthrough.info
 
-import com.prevent.feature.walkthrough.info.domain.PersonalInfoValidator
+import com.prevent.data.personal_data.domain.PersonalInfoValidator
 
 internal class PersonalInfoValidationLiveDataFactory(
     private val personalInfoValidator: PersonalInfoValidator

@@ -25,7 +25,6 @@ class WalkThroughActivity : FragmentActivity(R.layout.activity_walkthrough) {
             activity_walkthrough_view_pager_2.currentItem =
                 activity_walkthrough_view_pager_2.currentItem + 1
         }
-
         activity_walkthrough_view_pager_2.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -58,6 +57,7 @@ class WalkThroughActivity : FragmentActivity(R.layout.activity_walkthrough) {
             pageradapter,
             0
         )
+
         walkThroughViewModel
             .walkThroughLiveData
             .observeForever {
