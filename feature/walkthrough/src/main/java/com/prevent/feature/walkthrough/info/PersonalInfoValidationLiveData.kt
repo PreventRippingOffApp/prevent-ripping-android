@@ -1,7 +1,10 @@
 package com.prevent.feature.walkthrough.info
 
 import androidx.lifecycle.LiveData
-import com.prevent.feature.walkthrough.info.domain.PersonalInfoValidator
+import com.prevent.data.personal_data.domain.PersonalInfoValidator
+import com.prevent.data.personal_data.entity.AddressValueObject
+import com.prevent.data.personal_data.entity.NameValueObject
+import com.prevent.data.personal_data.entity.PersonalDataEntity
 
 internal class PersonalInfoValidationLiveData(
     private val personalInfoValidator: PersonalInfoValidator
@@ -20,9 +23,12 @@ internal class PersonalInfoValidationLiveData(
         lastName: String,
         address: String
     ) {
-        val firstNameValidateResult = personalInfoValidator.firstNameValidate(firstName)
-        val lastNameValidateResult = personalInfoValidator.lastNameValidate(lastName)
-        val addressValidateResult = personalInfoValidator.addressValidate(address)
+        val personalDataEntity =
+            PersonalDataEntity(0, NameValueObject(firstName, lastName), AddressValueObject(address))
+
+        val firstNameValidateResult = personalInfoValidator.validateFirstName(personalDataEntity)
+        val lastNameValidateResult = personalInfoValidator.validateLastName(personalDataEntity)
+        val addressValidateResult = personalInfoValidator.validateAddress(personalDataEntity)
 
         val firstNameErrorMessage = if (firstNameValidateResult) {
             ""
