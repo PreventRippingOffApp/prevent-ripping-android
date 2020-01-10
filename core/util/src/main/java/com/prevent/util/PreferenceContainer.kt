@@ -6,6 +6,8 @@ import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlin.reflect.KClass
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.json.Json
 
 interface PreferenceContainer<T : Any> {
     val context: Context
@@ -46,6 +48,16 @@ interface PreferenceContainer<T : Any> {
     ): T {
         val json = preference().getString(getClassKey<T>(), "")
         return Gson().fromJson(json, object : TypeToken<T>() {}.type) ?: default
+    }
+
+    fun loadDataBySerializer(serializer: KSerializer<T>): T? {
+        val json = preference().getString(getClassKey<T>(), "") ?: return null
+        return Json.parse(serializer, json)
+    }
+
+    fun loadDataBySerializer(serializer: KSerializer<T>, default: T): T {
+        val json = preference().getString(getClassKey<T>(), "") ?: return default
+        return Json.parse(serializer, json)
     }
 
     @SuppressLint("ApplySharedPref")
