@@ -5,6 +5,7 @@ import com.prevent.alertmap.alertMapModule
 import com.prevent.data.flags.flagsModule
 import com.prevent.data.personal_data.personalDataModule
 import com.prevent.data.recorddata.recordDataModule
+import com.prevent.feature.alert.alertModule
 import com.prevent.feature.alertmap_data.alertMapDataModule
 import com.prevent.feature.record.recordModule
 import com.prevent.feature.setting.settingModule
@@ -28,7 +29,8 @@ class MainApplication : Application() {
             walkthroughModule,
             personalDataModule,
             navigatorModule,
-            settingModule
+            settingModule,
+            alertModule
         ) + alertMapDataModule
 
         startKoin {
