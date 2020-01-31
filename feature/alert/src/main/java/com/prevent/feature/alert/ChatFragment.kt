@@ -26,7 +26,7 @@ class ChatFragment : Fragment() {
 
         binding.sendButton.setOnClickListener {
             viewModel.sendMessage(binding.messageEditText.text.toString())
-            binding.messageEditText.text.clear()
+            binding.messageEditText.text?.clear()
         }
 
         val chatMessageAdapter = ChatMessageAdapter(requireContext())

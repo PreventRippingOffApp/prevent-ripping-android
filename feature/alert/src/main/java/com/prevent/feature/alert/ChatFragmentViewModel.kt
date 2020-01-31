@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 
-
 internal class ChatFragmentViewModel(
     private val messageLiveDataFactory: MessageLiveDataFactory
 ) : ViewModel() {

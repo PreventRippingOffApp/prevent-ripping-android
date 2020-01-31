@@ -24,7 +24,7 @@ internal class ChatPlanAiMessageViewHolder private constructor(
         }
     }
 
-    fun bindTo(message:MessageType.AiMessage){
+    fun bindTo(message: MessageType.AiMessage) {
         binding.message = message
     }
 }

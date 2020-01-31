@@ -26,7 +26,7 @@ import org.koin.android.ext.android.inject
 
 class RecordDashboardActivity : FragmentActivity(R.layout.activity_record_dashboard) {
 
-    private val recordDashboardNavigator:RecordDashboardNavigator by inject()
+    private val recordDashboardNavigator: RecordDashboardNavigator by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
