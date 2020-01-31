@@ -1,7 +1,6 @@
 package com.prevent.feature.record.dashboard
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityOptionsCompat
@@ -23,8 +22,12 @@ import kotlinx.android.synthetic.main.activity_record_dashboard.activity_record_
 import kotlinx.android.synthetic.main.activity_record_dashboard.activity_record_dashboard_rip_off_talk_material_text_button
 import kotlinx.android.synthetic.main.activity_record_dashboard.activity_record_dashboard_show_all_material_button
 import kotlinx.android.synthetic.main.activity_record_dashboard.map
+import org.koin.android.ext.android.inject
 
 class RecordDashboardActivity : FragmentActivity(R.layout.activity_record_dashboard) {
+
+    private val recordDashboardNavigator: RecordDashboardNavigator by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,17 +39,7 @@ class RecordDashboardActivity : FragmentActivity(R.layout.activity_record_dashbo
 
         activity_record_dashboard_alert_with_mail_button
             .setOnClickListener {
-                startActivity(
-                    Intent(
-                        Intent.ACTION_SENDTO
-                    ).apply {
-                        type = "*/*"
-                        data = Uri.parse("mailto:")
-                        putExtra(Intent.EXTRA_EMAIL, arrayOf("info@contso.com"))
-                        putExtra(Intent.EXTRA_SUBJECT, "通報について")
-                        putExtra(Intent.EXTRA_TEXT, "通報について")
-                    }
-                )
+                recordDashboardNavigator.showSendAlertDialog(supportFragmentManager)
             }
 
         activity_record_dashboard_rip_off_talk_material_text_button
